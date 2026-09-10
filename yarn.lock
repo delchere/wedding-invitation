@@ -487,7 +487,7 @@
   dependencies:
     glob "7.1.7"
 
-"@next/swc-win32-x64-msvc@^12.1.5", "@next/swc-win32-x64-msvc@12.1.5":
+"@next/swc-win32-x64-msvc@12.1.5":
   version "12.1.5"
   resolved "https://registry.npmjs.org/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-12.1.5.tgz"
   integrity sha512-/SoXW1Ntpmpw3AXAzfDRaQidnd8kbZ2oSni8u5z0yw6t4RwJvmdZy1eOaAADRThWKV+2oU90++LSnXJIwBRWYQ==
