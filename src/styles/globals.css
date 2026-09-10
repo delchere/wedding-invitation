@@ -32,10 +32,15 @@ html {
   scroll-behavior: smooth;
 }
 
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
 body {
   background-color: var(--color-background);
   color: var(--ink);
   margin: 0;
+  overflow-x: hidden;
 }
 
 .thesis-page {
@@ -498,6 +503,144 @@ body {
 .rsvp-form .MuiInputBase-root { background: rgba(255,255,255,.45); }
 .rsvp-form label { font-size: .95rem; }
 .rsvp-success { color: var(--sage); font-weight: 600; }
+
+@media (max-width: 759px) {
+  .thesis-nav {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px 16px;
+  }
+
+  .thesis-nav__mark {
+    flex: 1 1 auto;
+  }
+
+  .thesis-nav__links {
+    display: flex;
+    flex: 1 0 100%;
+    gap: 16px;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding: 2px 0 4px;
+    scrollbar-width: none;
+  }
+
+  .thesis-nav__links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .thesis-nav__links a {
+    flex: 0 0 auto;
+    font-size: .58rem;
+  }
+
+  .thesis-hero {
+    min-height: 76vh;
+  }
+
+  .thesis-hero:before {
+    inset: 10px;
+  }
+
+  .thesis-hero:after {
+    inset: 15px;
+  }
+
+  .floral-corner {
+    opacity: .5;
+    transform: scale(.72);
+    transform-origin: top left;
+  }
+
+  .floral-corner--left {
+    left: -22px;
+  }
+
+  .floral-corner--right {
+    right: -22px;
+    transform: scaleX(-1) scale(.72);
+    transform-origin: top right;
+  }
+
+  .thesis-hero__content {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .thesis-title {
+    font-size: clamp(2.35rem, 15vw, 4rem) !important;
+    overflow-wrap: anywhere;
+  }
+
+  .thesis-subtitle {
+    font-size: .92rem !important;
+  }
+
+  .thesis-names {
+    font-size: clamp(1.55rem, 9vw, 2.5rem);
+    overflow-wrap: anywhere;
+  }
+
+  .thesis-content {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .thesis-section {
+    padding: 52px 0;
+  }
+
+  .thesis-section h2 {
+    font-size: clamp(1.85rem, 10vw, 2.7rem);
+  }
+
+  .thesis-section p {
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .thesis-section--sage {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .floral-bouquet {
+    justify-self: center;
+    margin: 4px auto -18px;
+    transform: scale(.78) rotate(-8deg);
+    transform-origin: center;
+  }
+
+  .floral-sprig--right {
+    right: -34px;
+    transform: scale(.75) rotate(20deg);
+  }
+
+  .floral-sprig--left {
+    left: -34px;
+    transform: scale(.75) scaleX(-1) rotate(20deg);
+  }
+
+  .swatches {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .swatch {
+    height: 64px;
+    width: 64px;
+  }
+
+  .rsvp-form {
+    max-width: none;
+  }
+
+  .rsvp-form .thesis-button {
+    width: 100%;
+  }
+}
 
 @media (min-width: 760px) {
   .thesis-nav__links { display: flex; }
