@@ -3,7 +3,7 @@ import { Box, Button, Container, Paper, TextField, Typography } from '@mui/mater
 import { NextPage } from 'next'
 import LanguageToggle from '@/components/language-toggle'
 import { useLocale } from '@/context/locale-context'
-import adminConfig from '@/config/admin.config'
+//import adminConfig from '@/config/admin.config'
 import weddingConfig from '@/config/wedding.config'
 import { ThesisEmblem } from '@/components/home'
 
@@ -31,11 +31,11 @@ const Home: NextPage = () => {
   const [submitted, setSubmitted] = useState(false)
   const [storyExpanded, setStoryExpanded] = useState(false)
 
+  const RSVP_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeqdrEvyJqORdq3EqIWna6fEGRfB3mDN2ag-TPrvM8fASZSnQ/viewform?usp=dialog'
+
   const submitRsvp = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
-    const subject = `${t('rsvp')} - ${weddingConfig.people.bride.firstName} & ${weddingConfig.people.groom.firstName}`
-    const body = `${t('name')}: ${name}\n${t('rsvp')}: ${attendance === 'yes' ? t('attending') : t('notAttending')}`
-    window.location.href = `mailto:${adminConfig.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    window.open(RSVP_FORM_URL, '_blank', 'noopener,noreferrer')
     setSubmitted(true)
   }
 
