@@ -152,20 +152,28 @@ The next chapter will be written on our wedding day.`,
     receptionDate: 'Saturday, January 9, 2027 · 2:00 PM',
     receptionLocation: 'Nigeria, Umuahia, Abia State',
     dress: 'Dress code',
-    dressText: `Each colour in this palette ("The Thesis of Love") reflects a symbolic dimension of the couple's journey:
+        dressText: `Our colour palette reflects the symbolism of our story:
 
-Ivory: A symbol of softness, purity and renewal. It represents the beginning of a new chapter and the blank page on which the story is written.
+Ivory: The beginning of a new chapter — the blank page on which our story continues to be written.
 
-Champagne Gold: A celebration of excellence, achievement and discovery. It honours everything that has been built together and the joy of marking life’s great milestones.
+Champagne Gold: The worth of everything we have built together, and the joy of celebrating this important milestone: Discovery, Achievement and Celebration.
 
-Sage Green: A symbol of life, growth and harmony. It reflects simplicity, natural warmth and the journey of growing side by side each day.
+Sage Green: Life, growth and harmony. A symbol of our journey to build a life together and grow side by side, with the simplicity and warmth we wish to bring to our home.
 
 Together, these three shades create a theme rooted in elegance, nature, wisdom and timeless love.`,
     gifts: 'Gifts & contact',
     giftsTitle: 'Gifts',
-    giftsText: 'Your presence by our side is already a wonderful gift. For those who wish to give an extra attention - as you prefer you can contribute to the am via',
+    giftsText: `Your presence by our side will already be a wonderful gift. For those who would like to show us some extra kindness, you can contribute to the gift fund via:
+
+- **TMoney**: **+228 92 06 94 98** (Account holder: DON-TSA Delchere)
+- **In person**: on the day of the celebration, in the box provided for this purpose.
+
+Thank you from the bottom of our hearts for your generosity and kindness.`,
     contactTitle: 'Contact',
-    contactText: 'For any questions about the ceremony or reception, contact details will be added here soon.',
+    contactText: `For any questions about the ceremony or reception, you can reach us at the following numbers:
+
+- **+228 92 06 94 98**
+- **+27 65 30 71 427**`,
     rsvp: 'RSVP',
     rsvpText: 'We would be delighted to receive your response by late October at the latest, to help us best prepare for this celebration.',
     name: 'Your name',
