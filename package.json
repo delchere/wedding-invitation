@@ -3,7 +3,7 @@
   "author": "Mattias Henders",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://delchere.github.io/wedding-template",
+  "homepage": "https://delchere.github.io/wedding-invitation",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
