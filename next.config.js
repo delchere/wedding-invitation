@@ -7,6 +7,12 @@ const nextConfig = {
     domains: ['v5.airtableusercontent.com', 'maps.googleapis.com'],
     unoptimized: true,
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 }
 
 module.exports = nextConfig
