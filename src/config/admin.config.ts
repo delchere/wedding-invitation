@@ -1,7 +1,7 @@
 import { AdminConfigType } from "@/interfaces/config"
 
 const adminConfig: AdminConfigType = {
-    email: 'admin@email.com'
+    email: 'delchere.dontsa@aims-cameroon.org'
 }
 
 export default adminConfig
