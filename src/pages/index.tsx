@@ -15,6 +15,10 @@ const formatContent = (text: string): React.ReactNode => {
     return part
   })
 }
+const mapLink = (address: string): string =>
+  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`
+
+const RECEPTION_ADDRESS = 'Jubilee Hall, Mater Dei Cathedral, Umuahia, Nigeria'
 
 const navItems = [
   ['story', 'story'],
@@ -116,7 +120,7 @@ const Home: NextPage = () => {
           <Typography component="p" className="eyebrow">02 / {t('wedding')}</Typography><Typography component="h2">{t('wedding')}</Typography><Typography component="p">{t('weddingText')}</Typography>
           <Box className="detail-grid">
             <Paper><strong>{t('whiteWedding')}</strong><span>{t('whiteWeddingDate')}</span><span>{t('ceremonyLocation')}</span></Paper>
-            <Paper><strong>{t('reception')}</strong><span>{t('receptionDate')}</span><span>{t('receptionLocation')}</span></Paper>
+            <Paper><strong>{t('reception')}</strong><span>{t('receptionDate')}</span><span>{t('receptionLocation')}</span><a href={mapLink(RECEPTION_ADDRESS)} target="_blank" rel="noopener noreferrer" className="thesis-map-link">{t('viewMap')}</a></Paper>
           </Box>
         </section>
         <section id="dress-code" className="thesis-section thesis-section--sage">

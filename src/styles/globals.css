@@ -587,6 +587,15 @@ body {
   color: inherit;
 }
 
+.thesis-map-link {
+  color: var(--sage);
+  font-size: .85rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  width: fit-content;
+}
+
 .swatches {
   display: flex;
   gap: 8px;
