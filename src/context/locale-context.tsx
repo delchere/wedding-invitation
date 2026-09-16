@@ -11,8 +11,16 @@ type LocaleContextValue = {
 const translations: Record<Locale, Record<string, string>> = {
   fr: {
     academy: 'The Academy of Life',
+    department: 'Department of Human Connection',
     thesis: 'The Thesis of Love',
-    invitation: 'Nous avons le plaisir de vous inviter à soutenir',
+    doctoralJourney: 'A Doctoral Journey Exploring',
+    loveValues: 'Love • Faith • Friendship • Commitment',
+    authors: 'Authors',
+    finalDefense: 'Final Defense',
+    timeLabel: 'Time:',
+    locationLabel: 'Location:',
+    supervisor: 'Supervisor',
+    invitation: 'Nous sommes heureux de vous inviter à assister à',
     ceremony: 'la soutenance de notre thèse de vie à deux',
     story: 'Notre histoire',
     readMore: 'Lire plus',
@@ -47,8 +55,9 @@ NOUS.
 Et parce qu’une belle histoire mérite d’être racontée jusqu’au bout, nous gardons encore quelques chapitres pour vous…
 La suite, le jour du mariage.`,
     wedding: 'Le grand jour',
-    weddingText: 'Nous vous attendons le samedi 9 janvier 2027 pour partager notre mariage religieux, puis célébrer ensemble lors de la réception. Les informations concernant la réception seront communiquées prochainement.',
+    weddingText: 'Nous vous attendons le samedi 9 janvier 2027 pour partager notre mariage religieux, puis célébrer ensemble lors de la réception.',
     whiteWedding: 'Cérémonie à l’église',
+    whiteWeddingDate: 'Samedi 9 janvier 2027 · 11h30',
     reception: 'Réception',
     ceremonyDate: 'Samedi 9 janvier 2027',
     ceremonyLocation: 'Nigéria, Umuahia, Abia State',
@@ -57,7 +66,7 @@ La suite, le jour du mariage.`,
     dress: 'Dress code',
     dressText: `Chaque couleur de cette palette (« The Thesis of Love ») incarne une dimension symbolique du parcours du couple :
 
-Ivoire (Ivory) : Symbole de douceur, de pureté et de renouveau. Il représente le début d'un nouveau chapitre et la page blanche sur laquelle s'écrit l'histoire.
+Ivoire : Symbole de douceur, de pureté et de renouveau. Il représente le début d'un nouveau chapitre et la page blanche sur laquelle s'écrit l'histoire.
 
 Or Champagne (Champagne Gold) : Incarnation de l'excellence, de l'accomplissement et de la découverte. Il célèbre la valeur de tout ce qui a été construit ensemble et la joie de marquer les grandes étapes.
 
@@ -66,11 +75,11 @@ Vert Sauge (Sage Green) : Symbole de vie, de croissance et d'harmonie. Il reflè
 L'association de ces trois nuances crée un thème axé sur l'élégance, la nature, le savoir et l'amour intemporel.`,
     gifts: 'Cadeaux & contact',
     giftsTitle: 'Cadeaux',
-    giftsText: 'Votre présence et vos prières sont notre plus beau cadeau. Si vous souhaitez nous offrir quelque chose, les informations seront ajoutées ici prochainement.',
+    giftsText: 'Votre présence à nos côtés est déjà un merveilleux cadeau. Pour celles et ceux qui souhaiteraient nous témoigner une attention particulière, vous pouvez, si vous le préférez, contribuer via',
     contactTitle: 'Contact',
     contactText: 'Pour toute question concernant la cérémonie ou la réception, les coordonnées seront ajoutées ici prochainement.',
     rsvp: 'RSVP',
-    rsvpText: 'Merci de confirmer votre présence afin de nous aider à préparer cette célébration.',
+    rsvpText: 'Cela nous ferait grand plaisir d’obtenir votre réponse au plus tard fin octobre, afin de nous aider à préparer au mieux cette célébration.',
     name: 'Votre nom',
     attending: 'Je serai présent(e)',
     notAttending: 'Je ne pourrai pas venir',
@@ -81,7 +90,15 @@ L'association de ces trois nuances crée un thème axé sur l'élégance, la nat
   },
   en: {
     academy: 'The Academy of Life',
+    department: 'Department of Human Connection',
     thesis: 'The Thesis of Love',
+    doctoralJourney: 'A Doctoral Journey Exploring',
+    loveValues: 'Love • Faith • Friendship • Commitment',
+    authors: 'Authors',
+    finalDefense: 'Final Defense',
+    timeLabel: 'Time:',
+    locationLabel: 'Location:',
+    supervisor: 'Supervisor',
     invitation: 'We are delighted to invite you to defend',
     ceremony: 'the thesis of our life together',
     story: 'Our story',
@@ -117,8 +134,9 @@ US.
 Because a beautiful story deserves to be told to the very end, we are still keeping a few chapters for you...
 The next chapter will be written on our wedding day.`,
     wedding: 'The wedding day',
-    weddingText: 'Join us on Saturday, January 9, 2027 to share in our religious wedding ceremony, then celebrate together at the reception. Reception details will be shared soon.',
+    weddingText: 'Join us on Saturday, January 9, 2027 to share in our religious wedding ceremony, then celebrate together at the reception.',
     whiteWedding: 'Church ceremony',
+    whiteWeddingDate: 'Saturday, January 9, 2027 · 11:30 AM',
     reception: 'Reception',
     ceremonyDate: 'Saturday, January 9, 2027',
     ceremonyLocation: 'Nigeria, Umuahia, Abia State',
@@ -136,11 +154,11 @@ Sage Green: A symbol of life, growth and harmony. It reflects simplicity, natura
 Together, these three shades create a theme rooted in elegance, nature, wisdom and timeless love.`,
     gifts: 'Gifts & contact',
     giftsTitle: 'Gifts',
-    giftsText: 'Your presence and prayers are our greatest gift. If you would like to give us something, the details will be added here soon.',
+    giftsText: 'Your presence by our side is already a wonderful gift. For those who wish to give an extra attention - as you prefer you can contribute to the am via',
     contactTitle: 'Contact',
     contactText: 'For any questions about the ceremony or reception, contact details will be added here soon.',
     rsvp: 'RSVP',
-    rsvpText: 'Please confirm your attendance so we can prepare this celebration.',
+    rsvpText: 'We would be delighted to receive your response by late October at the latest, to help us best prepare for this celebration.',
     name: 'Your name',
     attending: 'I will attend',
     notAttending: 'I cannot attend',

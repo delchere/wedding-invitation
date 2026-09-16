@@ -30,7 +30,6 @@ export function MyCustomApp({ Component, pageProps }: AppProps & CustomAppProps)
       <MUIProvider>
         <CssBaseline />
         <LocaleProvider>
-          <Splash timeout={200} />
           <Component {...pageProps} />
         </LocaleProvider>
       </MUIProvider>

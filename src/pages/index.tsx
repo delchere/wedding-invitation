@@ -5,6 +5,7 @@ import LanguageToggle from '@/components/language-toggle'
 import { useLocale } from '@/context/locale-context'
 import adminConfig from '@/config/admin.config'
 import weddingConfig from '@/config/wedding.config'
+import { ThesisEmblem } from '@/components/home'
 
 const navItems = [
   ['story', 'story'],
@@ -40,28 +41,59 @@ const Home: NextPage = () => {
       </Box>
 
       <Box component="header" className="thesis-hero">
-        <Box className="floral-corner floral-corner--left" aria-hidden="true">
+        <Box className="floral-corner floral-corner--tl" aria-hidden="true">
           <span className="flower flower--large" />
           <span className="flower flower--small" />
           <span className="leaf leaf--one" />
           <span className="leaf leaf--two" />
+          <span className="leaf leaf--three" />
         </Box>
-        <Box className="floral-corner floral-corner--right" aria-hidden="true">
+        <Box className="floral-corner floral-corner--tr" aria-hidden="true">
           <span className="flower flower--large" />
           <span className="flower flower--small" />
           <span className="leaf leaf--one" />
           <span className="leaf leaf--two" />
+          <span className="leaf leaf--three" />
+        </Box>
+        <Box className="floral-corner floral-corner--bl" aria-hidden="true">
+          <span className="flower flower--large" />
+          <span className="flower flower--small" />
+          <span className="leaf leaf--one" />
+          <span className="leaf leaf--two" />
+          <span className="leaf leaf--three" />
+        </Box>
+        <Box className="floral-corner floral-corner--br" aria-hidden="true">
+          <span className="flower flower--large" />
+          <span className="flower flower--small" />
+          <span className="leaf leaf--one" />
+          <span className="leaf leaf--two" />
+          <span className="leaf leaf--three" />
         </Box>
         <Container maxWidth="md" className="thesis-hero__content">
-          <Box className="wedding-rings" aria-hidden="true"><span /><span /></Box>
-          <Typography component="p" className="eyebrow">{t('academy')}</Typography>
+          <Typography component="p" className="academy-title">{t('academy')}</Typography>
+          <Typography component="p" className="department-name">{t('department')}</Typography>
+          <Box className="thesis-emblem-wrapper" aria-label="Wedding emblem">
+            <ThesisEmblem />
+          </Box>
           <Typography component="h1" className="thesis-title">{t('thesis')}</Typography>
-          <Typography component="p" className="thesis-subtitle">{t('invitation')}</Typography>
-          <Typography component="p" className="thesis-names">
-            {weddingConfig.people.bride.firstName} <span>&</span> {weddingConfig.people.groom.firstName} {weddingConfig.people.groom.lastName}
-          </Typography>
-          <Typography component="p" className="thesis-subtitle">{t('ceremony')}</Typography>
-          <Button href="#rsvp" className="thesis-button">{t('rsvp')}</Button>
+          <Typography component="p" className="thesis-subtitle">{t('doctoralJourney')}</Typography>
+          <Typography component="p" className="thesis-values">{t('loveValues')}</Typography>
+          <Box className="thesis-authors-block">
+            <Typography component="p" className="thesis-label">{t('authors')}</Typography>
+            <Typography component="p" className="thesis-names">
+              {weddingConfig.people.bride.firstName} <span className="ampersand">&</span> {weddingConfig.people.groom.firstName}
+            </Typography>
+          </Box>
+          <Box className="thesis-defense-block">
+            <Typography component="p" className="thesis-label">{t('finalDefense')}</Typography>
+            <Typography component="p" className="thesis-date">{t('ceremonyDate')}</Typography>
+            <Typography component="p" className="thesis-detail"><span className="thesis-time-label">{t('timeLabel')}</span> {weddingConfig.date.ceremonyTime}</Typography>
+            <Typography component="p" className="thesis-detail"><span className="thesis-location-label">{t('locationLabel')}</span> {weddingConfig.location.address}</Typography>
+          </Box>
+          <Box className="thesis-supervisor-block">
+            <Typography component="p" className="thesis-label">{t('supervisor')}</Typography>
+            <Typography component="p" className="thesis-officiant">GOD</Typography>
+          </Box>
         </Container>
       </Box>
 
@@ -74,7 +106,7 @@ const Home: NextPage = () => {
           <Box className="floral-sprig floral-sprig--right" aria-hidden="true"><span /><span /><span /></Box>
           <Typography component="p" className="eyebrow">02 / {t('wedding')}</Typography><Typography component="h2">{t('wedding')}</Typography><Typography component="p">{t('weddingText')}</Typography>
           <Box className="detail-grid">
-            <Paper><strong>{t('whiteWedding')}</strong><span>{t('ceremonyDate')}</span><span>{t('ceremonyLocation')}</span></Paper>
+            <Paper><strong>{t('whiteWedding')}</strong><span>{t('whiteWeddingDate')}</span><span>{t('ceremonyLocation')}</span></Paper>
             <Paper><strong>{t('reception')}</strong><span>{t('receptionDate')}</span><span>{t('receptionLocation')}</span></Paper>
           </Box>
         </section>

@@ -8,7 +8,7 @@ const weddingConfig: WeddingConfigType = {
     date: {
         date: '2027-01-09',
         time: undefined,
-        ceremonyTime: 'À venir',
+        ceremonyTime: '11h30',
         receptionTime: '14h00'
     },
     location: {

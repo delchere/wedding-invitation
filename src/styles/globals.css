@@ -87,44 +87,48 @@ body {
 
 .thesis-hero {
   align-items: center;
-  background: radial-gradient(circle at 80% 20%, rgba(201,166,107,.18), transparent 30%), var(--ivory);
-  border-bottom: 1px solid var(--champagne);
+  background:
+    radial-gradient(circle at 50% 30%, rgba(201,166,107,.12), transparent 50%),
+    var(--ivory);
   display: flex;
-  min-height: 82vh;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 48px 24px;
   position: relative;
   text-align: center;
 }
 
+/* Double gold border frame */
 .thesis-hero:before, .thesis-hero:after {
   border: 1px solid var(--champagne);
   content: "";
-  inset: 18px;
   pointer-events: none;
   position: absolute;
 }
 
+.thesis-hero:before {
+  inset: 18px;
+}
+
 .thesis-hero:after {
   inset: 24px;
-  border-color: rgba(113,133,121,.45);
+  border-color: rgba(201,166,107,.5);
 }
 
-.thesis-hero__content {
-  position: relative;
-  z-index: 1;
-}
-
+/* Four corner floral decorations */
 .floral-corner {
   height: 170px;
   opacity: .72;
   pointer-events: none;
   position: absolute;
-  top: 18px;
   width: 150px;
   z-index: 1;
 }
 
-.floral-corner--left { left: 12px; }
-.floral-corner--right { right: 12px; transform: scaleX(-1); }
+.floral-corner--tl { left: 12px; top: 12px; }
+.floral-corner--tr { right: 12px; top: 12px; transform: scaleX(-1); }
+.floral-corner--bl { left: 12px; bottom: 12px; transform: scaleY(-1); }
+.floral-corner--br { right: 12px; bottom: 12px; transform: scale(-1); }
 
 .flower, .leaf {
   display: block;
@@ -132,27 +136,44 @@ body {
 }
 
 .flower {
-  border: 1px solid var(--champagne);
+  background:
+    radial-gradient(circle at 50% 48%, #9d786a 0 12%, transparent 13%),
+    radial-gradient(ellipse at 50% 8%, #c7a095 0 27%, transparent 29%),
+    radial-gradient(ellipse at 92% 35%, #b58c80 0 27%, transparent 29%),
+    radial-gradient(ellipse at 76% 88%, #c7a095 0 27%, transparent 29%),
+    radial-gradient(ellipse at 20% 88%, #b58c80 0 27%, transparent 29%),
+    radial-gradient(ellipse at 8% 35%, #c7a095 0 27%, transparent 29%);
+  border: 1px solid rgba(129, 93, 80, .75);
   border-radius: 50%;
-  height: 15px;
-  width: 15px;
+  height: 31px;
+  opacity: .9;
+  width: 31px;
 }
 
-.flower:before, .flower:after {
-  border: 1px solid var(--champagne);
+.flower:before,
+.flower:after {
+  border: 1px solid rgba(129, 93, 80, .5);
   border-radius: 50%;
   content: "";
-  height: 15px;
-  left: -1px;
+  height: 22px;
+  left: 4px;
   position: absolute;
-  top: -1px;
-  width: 15px;
+  top: 4px;
+  width: 22px;
 }
 
-.flower:before { transform: rotate(60deg); }
-.flower:after { transform: rotate(-60deg); }
-.flower--large { left: 42px; top: 38px; }
-.flower--small { left: 82px; top: 83px; transform: scale(.65); }
+.flower:before {
+  background: radial-gradient(circle, transparent 45%, rgba(255,255,255,.28) 47% 52%, transparent 54%);
+  transform: rotate(35deg);
+}
+
+.flower:after {
+  background: radial-gradient(circle, transparent 42%, rgba(255,255,255,.2) 44% 50%, transparent 52%);
+  transform: rotate(-35deg);
+}
+
+.flower--large { left: 35px; top: 30px; transform: scale(1.05); }
+.flower--small { left: 78px; top: 80px; transform: scale(.62); }
 
 .leaf {
   border: 1px solid var(--sage);
@@ -164,25 +185,175 @@ body {
 
 .leaf--one { left: 72px; top: 42px; }
 .leaf--two { left: 98px; top: 24px; transform: rotate(75deg) scale(.75); }
+.leaf--three { left: 46px; top: 96px; transform: rotate(-48deg) scale(.65); }
 
-.wedding-rings {
-  height: 34px;
-  margin: 0 auto 18px;
+.thesis-hero__content {
   position: relative;
-  width: 68px;
+  z-index: 1;
 }
 
-.wedding-rings span {
-  border: 2px solid var(--champagne);
-  border-radius: 50%;
-  height: 27px;
-  position: absolute;
-  top: 2px;
-  width: 27px;
+/* Academy title – Old English inspired style */
+.academy-title {
+  color: var(--ink);
+  font-family: "Playfair Display", Georgia, serif !important;
+  font-size: clamp(1.2rem, 3.5vw, 1.6rem) !important;
+  font-style: italic;
+  font-weight: 600 !important;
+  letter-spacing: .06em;
+  margin-bottom: 4px !important;
+  text-transform: uppercase;
 }
 
-.wedding-rings span:first-child { left: 8px; }
-.wedding-rings span:last-child { right: 8px; }
+.department-name {
+  color: var(--ink);
+  font-family: "Playfair Display", Georgia, serif !important;
+  font-size: clamp(.85rem, 2.2vw, 1rem) !important;
+  font-weight: 400 !important;
+  letter-spacing: .02em;
+  margin: 0 0 28px !important;
+}
+
+/* Emblem wrapper – positions circle and laurels */
+.thesis-emblem-wrapper {
+  margin: 0 auto 28px;
+  position: relative;
+  width: 250px;
+  max-width: 90vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.thesis-emblem-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 250px;
+  filter: drop-shadow(0 2px 8px rgba(100, 90, 70, 0.08));
+  user-select: none;
+}
+
+/* Title – The Thesis of Love */
+.thesis-title {
+  color: var(--sage);
+  font-family: "Playfair Display", Georgia, serif !important;
+  font-size: clamp(2.2rem, 9vw, 4.2rem) !important;
+  font-weight: 600 !important;
+  letter-spacing: .04em;
+  line-height: 1.05 !important;
+  margin-bottom: 12px !important;
+  text-transform: uppercase;
+}
+
+/* Subtitle – A Doctoral Journey Exploring */
+.thesis-subtitle {
+  color: var(--ink);
+  font-family: "Playfair Display", Georgia, serif !important;
+  font-size: clamp(.85rem, 2.2vw, 1.05rem) !important;
+  font-style: italic;
+  letter-spacing: .02em;
+  margin-bottom: 2px !important;
+}
+
+/* Values – Love • Faith • Friendship • Commitment */
+.thesis-values {
+  color: var(--ink);
+  font-family: "Playfair Display", Georgia, serif !important;
+  font-size: clamp(.8rem, 2vw, 1rem) !important;
+  letter-spacing: .04em;
+  margin-bottom: 28px !important;
+}
+
+/* Authors block */
+.thesis-authors-block {
+  margin-bottom: 22px;
+}
+
+.thesis-label {
+  color: var(--champagne);
+  font-family: "DM Mono", monospace !important;
+  font-size: .7rem !important;
+  letter-spacing: .14em;
+  margin-bottom: 6px !important;
+  text-transform: uppercase;
+}
+
+.thesis-label--small {
+  font-size: .6rem !important;
+  letter-spacing: .18em;
+  margin-top: 2px !important;
+}
+
+.thesis-names {
+  color: var(--ink);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.1rem, 3.5vw, 1.6rem);
+  font-weight: 500;
+  letter-spacing: .02em;
+}
+
+.thesis-names .ampersand {
+  color: var(--champagne);
+  font-family: "Playfair Display", Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  margin: 0 8px;
+}
+
+/* Defense block */
+.thesis-defense-block {
+  margin-bottom: 22px;
+}
+
+.thesis-date {
+  color: var(--ink);
+  font-family: "Playfair Display", Georgia, serif !important;
+  font-size: clamp(.9rem, 2.4vw, 1.15rem) !important;
+  font-weight: 600 !important;
+  letter-spacing: .02em;
+  margin-bottom: 4px !important;
+}
+
+.thesis-detail {
+  color: var(--ink);
+  font-family: "Playfair Display", Georgia, serif !important;
+  font-size: clamp(.78rem, 2vw, .95rem) !important;
+  letter-spacing: .01em;
+  margin-bottom: 2px !important;
+}
+
+.thesis-time-label,
+.thesis-location-label {
+  color: var(--champagne);
+  font-weight: 500;
+}
+
+/* Supervisor block */
+.thesis-supervisor-block {
+  margin-top: 22px;
+}
+
+.thesis-officiant {
+  color: var(--ink);
+  font-family: "Playfair Display", Georgia, serif !important;
+  font-size: clamp(.85rem, 2.2vw, 1rem) !important;
+  font-weight: 500 !important;
+  letter-spacing: .02em;
+  margin-bottom: 2px !important;
+}
+
+.thesis-button {
+  background: var(--sage) !important;
+  color: var(--ivory) !important;
+  margin-top: 28px !important;
+  padding: 13px 22px !important;
+}
+
+.eyebrow {
+  color: var(--sage);
+  font-size: .68rem !important;
+  margin-bottom: 16px !important;
+}
 
 .section-ornament {
   align-items: center;
@@ -202,43 +373,6 @@ body {
   color: var(--champagne);
   font-size: 1.15rem;
   line-height: 1;
-}
-
-.eyebrow {
-  color: var(--sage);
-  font-size: .68rem !important;
-  margin-bottom: 16px !important;
-}
-
-.thesis-title {
-  color: var(--sage);
-  font-size: clamp(2.8rem, 13vw, 7rem) !important;
-  font-weight: 500 !important;
-  line-height: .98 !important;
-  margin-bottom: 24px !important;
-}
-
-.thesis-subtitle {
-  font-size: 1rem !important;
-  letter-spacing: .02em;
-}
-
-.thesis-names {
-  color: var(--ink);
-  font-size: clamp(1.8rem, 7vw, 3.4rem);
-  margin: 28px 0 12px;
-}
-
-.thesis-names span {
-  color: var(--champagne);
-  font-style: italic;
-}
-
-.thesis-button {
-  background: var(--sage) !important;
-  color: var(--ivory) !important;
-  margin-top: 28px !important;
-  padding: 13px 22px !important;
 }
 
 .thesis-content {
@@ -535,7 +669,8 @@ body {
   }
 
   .thesis-hero {
-    min-height: 76vh;
+    min-height: auto;
+    padding: 36px 16px;
   }
 
   .thesis-hero:before {
@@ -547,19 +682,35 @@ body {
   }
 
   .floral-corner {
-    opacity: .5;
-    transform: scale(.72);
+    opacity: .45;
+    transform: scale(.55);
+  }
+
+  .floral-corner--tl {
+    left: -10px;
+    top: -10px;
     transform-origin: top left;
   }
 
-  .floral-corner--left {
-    left: -22px;
+  .floral-corner--tr {
+    right: -10px;
+    top: -10px;
+    transform: scaleX(-1) scale(.55);
+    transform-origin: top right;
   }
 
-  .floral-corner--right {
-    right: -22px;
-    transform: scaleX(-1) scale(.72);
-    transform-origin: top right;
+  .floral-corner--bl {
+    left: -10px;
+    bottom: -10px;
+    transform: scaleY(-1) scale(.55);
+    transform-origin: bottom left;
+  }
+
+  .floral-corner--br {
+    right: -10px;
+    bottom: -10px;
+    transform: scale(-1) scale(.55);
+    transform-origin: bottom right;
   }
 
   .thesis-hero__content {
@@ -568,16 +719,12 @@ body {
   }
 
   .thesis-title {
-    font-size: clamp(2.35rem, 15vw, 4rem) !important;
+    font-size: clamp(1.8rem, 10vw, 3rem) !important;
     overflow-wrap: anywhere;
   }
 
-  .thesis-subtitle {
-    font-size: .92rem !important;
-  }
-
   .thesis-names {
-    font-size: clamp(1.55rem, 9vw, 2.5rem);
+    font-size: clamp(1rem, 5vw, 1.4rem);
     overflow-wrap: anywhere;
   }
 
@@ -647,8 +794,6 @@ body {
   .thesis-section--intro { grid-template-columns: 1fr 1fr; }
   .detail-grid { grid-template-columns: 1fr 1fr; }
   .thesis-section--sage { margin-left: 0; margin-right: 0; padding-left: 48px; padding-right: 48px; }
-  .floral-corner--left { left: 5vw; }
-  .floral-corner--right { right: 5vw; }
 }
 
 @-webkit-keyframes click_animation {
