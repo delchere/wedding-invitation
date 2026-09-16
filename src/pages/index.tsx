@@ -33,7 +33,7 @@ const Home: NextPage = () => {
   return (
     <Box className="thesis-page">
       <Box component="nav" className="thesis-nav" aria-label={t('menu')}>
-        <Typography className="thesis-nav__mark">DL × IC</Typography>
+        <Typography className="thesis-nav__mark">D × I</Typography>
         <Box className="thesis-nav__links">
           {navItems.map(([label, id]) => <a href={`#${id}`} key={id}>{t(label)}</a>)}
         </Box>

@@ -64,20 +64,27 @@ La suite, le jour du mariage.`,
     receptionDate: 'Samedi 9 janvier 2027 · 14h00',
     receptionLocation: 'Nigéria, Umuahia, Abia State',
     dress: 'Dress code',
-    dressText: `Chaque couleur de cette palette (« The Thesis of Love ») incarne une dimension symbolique du parcours du couple :
+    
+    dressText: `Notre palette de couleurs reflète la symbolique de notre histoire :
 
-Ivoire : Symbole de douceur, de pureté et de renouveau. Il représente le début d'un nouveau chapitre et la page blanche sur laquelle s'écrit l'histoire.
+Ivoire : Le début d'un nouveau chapitre — la page blanche sur laquelle notre histoire continue de s'écrire.
 
-Or Champagne (Champagne Gold) : Incarnation de l'excellence, de l'accomplissement et de la découverte. Il célèbre la valeur de tout ce qui a été construit ensemble et la joie de marquer les grandes étapes.
+Or Champagne : La valeur de tout ce que nous avons construit ensemble et la joie de célébrer cette étape importante : Découverte, Accomplissement et Célébration.
 
-Vert Sauge (Sage Green) : Symbole de vie, de croissance et d'harmonie. Il reflète la simplicité, la chaleur naturelle et l'évolution côte à côte au quotidien.
+Vert Sauge : La vie, la croissance et l'harmonie. Un symbole de notre parcours pour bâtir une vie ensemble et grandir côte à côte, avec la simplicité et la chaleur que nous souhaitons apporter à notre foyer.
 
 L'association de ces trois nuances crée un thème axé sur l'élégance, la nature, le savoir et l'amour intemporel.`,
     gifts: 'Cadeaux & contact',
     giftsTitle: 'Cadeaux',
-    giftsText: 'Votre présence à nos côtés est déjà un merveilleux cadeau. Pour celles et ceux qui souhaiteraient nous témoigner une attention particulière, vous pouvez, si vous le préférez, contribuer via',
+    giftsText: `Votre présence à nos côtés sera déjà un très beau cadeau. Pour celles et ceux qui souhaitent nous témoigner une attention supplémentaire, vous pouvez participer à l’urne via :
+• **TMoney** : **+228 92 06 94 98** (Titulaire : DON-TSA Delchere)
+• **En main propre** : le jour de la célébration, dans l’urne prévue à cet effet.
+
+Merci du fond du cœur pour votre générosité et votre bienveillance.`,
     contactTitle: 'Contact',
-    contactText: 'Pour toute question concernant la cérémonie ou la réception, les coordonnées seront ajoutées ici prochainement.',
+contactText: `Pour toute question concernant la cérémonie ou la réception, vous pouvez nous contacter aux numéros suivants :
+• **+228 92 06 94 98**
+• **+27 65 30 71 427**`,
     rsvp: 'RSVP',
     rsvpText: 'Cela nous ferait grand plaisir d’obtenir votre réponse au plus tard fin octobre, afin de nous aider à préparer au mieux cette célébration.',
     name: 'Votre nom',
