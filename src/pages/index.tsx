@@ -7,6 +7,15 @@ import adminConfig from '@/config/admin.config'
 import weddingConfig from '@/config/wedding.config'
 import { ThesisEmblem } from '@/components/home'
 
+const formatContent = (text: string) => {
+  return text.split(/(\*\*.*?\*\*)/g).map((part, index) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return <strong key={index}>{part.slice(2, -2)}</strong>
+    }
+    return part
+  })
+}
+
 const navItems = [
   ['story', 'story'],
   ['wedding', 'wedding'],
@@ -118,8 +127,8 @@ const Home: NextPage = () => {
           <Box className="floral-sprig floral-sprig--left" aria-hidden="true"><span /><span /><span /></Box>
           <Typography component="p" className="eyebrow">04 / {t('gifts')}</Typography><Typography component="h2">{t('gifts')}</Typography>
           <Box className="detail-grid">
-            <Paper><strong>{t('giftsTitle')}</strong><span>{t('giftsText')}</span></Paper>
-            <Paper><strong>{t('contactTitle')}</strong><span>{t('contactText')}</span></Paper>
+            <Paper><strong>{t('giftsTitle')}</strong><span>{formatContent(t('giftsText'))}</span></Paper>
+            <Paper><strong>{t('contactTitle')}</strong><span>{formatContent(t('contactText'))}</span></Paper>
           </Box>
         </section>
         <section id="rsvp" className="thesis-section thesis-section--rsvp">

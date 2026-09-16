@@ -576,6 +576,15 @@ body {
 
 .detail-grid span {
   font-size: .95rem;
+  white-space: pre-line;
+  line-height: 1.7;
+}
+
+.detail-grid span strong {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 700;
+  color: inherit;
 }
 
 .swatches {

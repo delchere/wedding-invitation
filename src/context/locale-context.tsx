@@ -77,12 +77,14 @@ L'association de ces trois nuances crée un thème axé sur l'élégance, la nat
     gifts: 'Cadeaux & contact',
     giftsTitle: 'Cadeaux',
     giftsText: `Votre présence à nos côtés sera déjà un très beau cadeau. Pour celles et ceux qui souhaitent nous témoigner une attention supplémentaire, vous pouvez participer à l’urne via :
+
 • **TMoney** : **+228 92 06 94 98** (Titulaire : DON-TSA Delchere)
 • **En main propre** : le jour de la célébration, dans l’urne prévue à cet effet.
 
 Merci du fond du cœur pour votre générosité et votre bienveillance.`,
     contactTitle: 'Contact',
-contactText: `Pour toute question concernant la cérémonie ou la réception, vous pouvez nous contacter aux numéros suivants :
+    contactText: `Pour toute question concernant la cérémonie ou la réception, vous pouvez nous contacter aux numéros suivants :
+
 • **+228 92 06 94 98**
 • **+27 65 30 71 427**`,
     rsvp: 'RSVP',
