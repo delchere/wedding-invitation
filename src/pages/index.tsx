@@ -7,7 +7,7 @@ import adminConfig from '@/config/admin.config'
 import weddingConfig from '@/config/wedding.config'
 import { ThesisEmblem } from '@/components/home'
 
-const formatContent = (text: string) => {
+const formatContent = (text: string): React.ReactNode => {
   return text.split(/(\*\*.*?\*\*)/g).map((part, index) => {
     if (part.startsWith('**') && part.endsWith('**')) {
       return <strong key={index}>{part.slice(2, -2)}</strong>

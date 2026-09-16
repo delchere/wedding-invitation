@@ -7,7 +7,7 @@ import { MUIProvider } from '@/providers'
 import 'slick-carousel/slick/slick.css'
 import '@/styles/globals.css'
 import '@/styles/react-slick.css'
-import { Splash } from '@/components/splash'
+//import { Splash } from '@/components/splash'
 import weddingConfig from '@/config/wedding.config'
 import { LocaleProvider } from '@/context/locale-context'
 
