@@ -16,7 +16,7 @@ const WeddingHero: FC = () => {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={`${basePath}/images/banners/home-hero.png`}
-          alt=""
+          alt={t('heroImageAlt')}
           className="hero__image"
         />
         <div className="hero__overlay" aria-hidden="true" />
