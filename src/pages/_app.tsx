@@ -6,7 +6,7 @@ import { CssBaseline } from '@mui/material'
 import { MUIProvider } from '@/providers'
 import 'slick-carousel/slick/slick.css'
 import '@/styles/globals.css'
-import '@/styles/react-slick.css'
+import '@/styles/site.css'
 //import { Splash } from '@/components/splash'
 import weddingConfig from '@/config/wedding.config'
 import { LocaleProvider } from '@/context/locale-context'
@@ -20,7 +20,7 @@ export function MyCustomApp({ Component, pageProps }: AppProps & CustomAppProps)
     <>
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
-        <meta name="theme-color" content="#000000" />
+        <meta name="theme-color" content="#f5f0e7" />
         <meta
           name="description"
           content={`We're happy to invite you to ${weddingConfig.people.bride.firstName} and ${weddingConfig.people.groom.firstName}'s wedding.`}

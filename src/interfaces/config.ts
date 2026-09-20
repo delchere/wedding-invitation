@@ -20,6 +20,15 @@ export type WeddingConfigType = {
         link: string
         latLng: string
     }
+    calendar?: {
+        url?: string
+        location?: string
+        details?: string
+        endTime?: string
+    }
+    rsvp: {
+        formUrl: string
+    }
 }
 
 export type AdminConfigType = {

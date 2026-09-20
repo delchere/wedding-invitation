@@ -1,11 +1,13 @@
 import weddingConfig from "@/config/wedding.config"
 
-export const getWeddingDate = (): Date => {
-    const dateStr = weddingConfig.date.time ? 
-        weddingConfig.date.date + 'T' + weddingConfig.date.time
-        : weddingConfig.date.date
+const WAT_OFFSET_HOURS = 1
 
-    return new Date(dateStr)
+export const getWeddingDate = (): Date => {
+    const { date, time } = weddingConfig.date
+    const [year, month, day] = date.split('-').map(Number)
+    const [hours, minutes] = (time || '11:30').split(':').map(Number)
+
+    return new Date(Date.UTC(year, month - 1, day, hours - WAT_OFFSET_HOURS, minutes))
 }
 
 export const formatDate = (date: Date): string => {

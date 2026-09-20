@@ -1,0 +1,294 @@
+.equation-story {
+  position: relative;
+  background: var(--inv-ivory, #f5f0e7);
+  border-bottom: 1px solid rgba(201, 166, 107, 0.45);
+  overflow: hidden;
+}
+
+.equation-story__layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 32px);
+}
+
+.equation-story__viz-column {
+  position: relative;
+  z-index: 1;
+}
+
+.equation-story__viz-sticky {
+  position: sticky;
+  top: clamp(64px, 12vw, 88px);
+  padding: clamp(20px, 4vw, 32px) 0 clamp(12px, 3vw, 20px);
+  pointer-events: none;
+}
+
+.equation-story__viz-inner {
+  max-width: 320px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.equation-story__theme {
+  font-family: "DM Mono", monospace;
+  font-size: clamp(0.58rem, 2.2vw, 0.66rem);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--inv-sage, #718579);
+  margin: 0 0 12px;
+  padding-left: 0.28em;
+}
+
+.equation-visual {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  max-height: min(42vh, 280px);
+}
+
+.equation-visual__coord {
+  font-family: "DM Mono", monospace;
+  font-size: 3px;
+  fill: #718579;
+  letter-spacing: 0.08em;
+}
+
+.equation-visual__us {
+  font-family: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  font-size: 7px;
+  font-weight: 600;
+  fill: #966f33;
+  letter-spacing: 0.15em;
+}
+
+.equation-story__viz-caption {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.4rem, 5vw, 1.85rem);
+  font-weight: 500;
+  color: var(--inv-gold-deep, #966f33);
+  letter-spacing: 0.2em;
+  margin: 8px 0 0;
+}
+
+.equation-story__narrative {
+  position: relative;
+  z-index: 2;
+  padding-bottom: clamp(48px, 8vw, 72px);
+}
+
+.equation-story__header {
+  padding: clamp(32px, 6vw, 48px) 0 clamp(24px, 4vw, 36px);
+  text-align: left;
+}
+
+.equation-story__eyebrow {
+  font-family: "DM Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--inv-sage, #718579);
+  margin: 0 0 14px;
+}
+
+.equation-story__title {
+  font-family: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  font-size: clamp(2rem, 8vw, 3rem);
+  font-weight: 500;
+  color: var(--inv-sage-deep, #5e6f64);
+  margin: 0;
+  line-height: 1.1;
+}
+
+.equation-story__chapter {
+  min-height: clamp(220px, 38vh, 320px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(28px, 5vw, 44px) 0;
+  border-top: 1px solid rgba(201, 166, 107, 0.18);
+}
+
+.equation-story__chapter--intro {
+  min-height: clamp(180px, 30vh, 260px);
+  border-top: none;
+}
+
+.equation-story__chapter--final {
+  min-height: clamp(260px, 42vh, 360px);
+}
+
+.equation-story__chapter--closing {
+  min-height: clamp(200px, 32vh, 280px);
+}
+
+.equation-story__chapter-label {
+  font-family: "DM Mono", monospace;
+  font-size: clamp(0.58rem, 2vw, 0.65rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--inv-champagne, #c9a66b);
+  margin: 0 0 16px;
+}
+
+.equation-story__paragraph {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.05rem, 3.6vw, 1.2rem);
+  line-height: 1.75;
+  color: var(--inv-ink, #24332d);
+  margin: 0 0 14px;
+  white-space: pre-line;
+  max-width: 38rem;
+}
+
+.equation-story__paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.equation-story__chapter--final .equation-story__paragraph {
+  font-size: clamp(1.12rem, 3.8vw, 1.28rem);
+  font-weight: 500;
+}
+
+.equation-story--collapsed .equation-story__chapter {
+  min-height: auto;
+  padding: clamp(20px, 4vw, 32px) 0;
+}
+
+.equation-story__read-more-wrap {
+  display: flex;
+  justify-content: center;
+  padding: clamp(8px, 2vw, 16px) 0 clamp(28px, 5vw, 40px);
+}
+
+.equation-story__read-more-wrap--less {
+  padding-top: clamp(16px, 3vw, 24px);
+  padding-bottom: 0;
+}
+
+.equation-story__read-more {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 3vw, 20px);
+  width: 100%;
+  max-width: 22rem;
+  margin: 0 auto;
+  padding: 12px 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: "DM Mono", monospace;
+  font-size: clamp(0.58rem, 2vw, 0.65rem);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--inv-gold-deep, #966f33);
+  transition: color 0.25s ease;
+}
+
+.equation-story__read-more:hover,
+.equation-story__read-more:focus-visible {
+  color: var(--inv-sage, #718579);
+  outline: none;
+}
+
+.equation-story__read-more:focus-visible .equation-story__read-more-label {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.equation-story__read-more-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 166, 107, 0.55), transparent);
+}
+
+.equation-story__read-more-label {
+  white-space: nowrap;
+}
+
+.equation-story__read-more-chevron {
+  display: flex;
+  align-items: center;
+  margin-left: -8px;
+  transition: transform 0.3s ease;
+}
+
+.equation-story__read-more:hover .equation-story__read-more-chevron {
+  transform: translateY(2px);
+}
+
+.equation-story__read-more-chevron--up {
+  transform: rotate(180deg);
+}
+
+.equation-story__read-more--less:hover .equation-story__read-more-chevron--up {
+  transform: rotate(180deg) translateY(2px);
+}
+
+.equation-story__rest {
+  overflow: hidden;
+}
+
+.equation-story__bridge {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: clamp(24px, 5vw, 40px);
+  padding-top: clamp(20px, 4vw, 32px);
+}
+
+.equation-story__bridge-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 166, 107, 0.55), transparent);
+}
+
+.equation-story__bridge-link {
+  font-family: "DM Mono", monospace;
+  font-size: clamp(0.58rem, 2vw, 0.65rem);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--inv-gold-deep, #966f33);
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 8px 4px;
+  transition: color 0.25s ease;
+}
+
+.equation-story__bridge-link:hover {
+  color: var(--inv-sage, #718579);
+}
+
+@media (min-width: 900px) {
+  .equation-story__layout {
+    grid-template-columns: minmax(240px, 34%) 1fr;
+    gap: clamp(24px, 4vw, 48px);
+    align-items: start;
+  }
+
+  .equation-story__viz-sticky {
+    top: 88px;
+    padding-top: clamp(48px, 6vw, 64px);
+  }
+
+  .equation-story__viz-inner {
+    margin: 0;
+    max-width: none;
+  }
+
+  .equation-visual {
+    max-height: 320px;
+  }
+
+  .equation-story__narrative {
+    padding-bottom: 96px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .equation-story__chapter {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
