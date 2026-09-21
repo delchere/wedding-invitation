@@ -3,6 +3,8 @@ import weddingConfig from '@/config/wedding.config'
 import ScrollReveal from '@/components/ScrollReveal'
 import { useLocale } from '@/context/locale-context'
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+
 const mapLink = (query: string): string =>
   `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`
 
@@ -36,6 +38,14 @@ const ProgramSection: FC = () => {
 
   return (
     <section id="program" className="section section--program" aria-labelledby="program-title">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={`${basePath}/images/banners/champagne.png`}
+        alt=""
+        className="program__champagne"
+        aria-hidden="true"
+      />
+
       <div className="section__inner">
         <ScrollReveal>
           <p className="section__eyebrow">03 / {t('wedding')}</p>
