@@ -342,7 +342,7 @@ a {
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: clamp(2rem, 7vw, 2.75rem);
   font-weight: 600;
-  color: var(--inv-ink);
+  color: var(--inv-sage-deep);
   margin: 0 0 16px;
   line-height: 1.15;
 }
