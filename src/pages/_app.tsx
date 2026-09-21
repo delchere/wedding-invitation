@@ -21,7 +21,7 @@ export function MyCustomApp({ Component, pageProps }: AppProps & CustomAppProps)
     <>
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
-        <meta name="theme-color" content="#f5f0e7" />
+        <meta name="theme-color" content="#f7f2e9" />
         <meta
           name="description"
           content={`We're happy to invite you to ${weddingConfig.people.bride.firstName} and ${weddingConfig.people.groom.firstName}'s wedding.`}

@@ -16,7 +16,7 @@
   font-size: 0.68rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--inv-sage, #718579);
+  color: var(--inv-sage-deep, #3f5248);
   margin: 0 0 clamp(28px, 5vw, 40px);
 }
 
@@ -48,10 +48,10 @@
 .dress-code-oval__code {
   font-family: "Cormorant Garamond", "Playfair Display", Georgia, serif;
   font-size: clamp(2.8rem, 12vw, 3.6rem);
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--inv-champagne, #c9a66b);
+  color: var(--inv-gold-deep, #8a5f28);
   margin: 0;
   padding-left: 0.28em;
   line-height: 1;
@@ -60,7 +60,7 @@
 .dress-code-heart {
   width: 14px;
   height: 13px;
-  color: var(--inv-champagne, #c9a66b);
+  color: var(--inv-gold-deep, #8a5f28);
   flex-shrink: 0;
 }
 
@@ -164,8 +164,8 @@
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: clamp(1.35rem, 5vw, 1.65rem);
   font-style: italic;
-  font-weight: 400;
-  color: var(--inv-champagne, #c9a66b);
+  font-weight: 500;
+  color: var(--inv-gold-deep, #8a5f28);
   margin: 0;
   line-height: 1.3;
 }
@@ -179,11 +179,12 @@
 
 .dress-code-details__text {
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(0.95rem, 3.2vw, 1.05rem);
-  line-height: 1.75;
-  color: var(--inv-sage-deep, #5e6f64);
+  font-size: clamp(0.98rem, 3.2vw, 1.1rem);
+  line-height: 1.8;
+  color: var(--inv-ink, #1a2621);
   margin: 0;
   white-space: pre-line;
+  font-weight: 500;
 }
 
 @media (min-width: 760px) {

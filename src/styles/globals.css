@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:wght@400;500;600;700&display=swap");
 
 :root {
-  --color-background: #f5f0e7;
-  --ivory: #f5f0e7;
-  --champagne: #c9a66b;
-  --sage: #718579;
-  --ink: #24332d;
-  --color-scrollbar: #c9a66b;
+  --color-background: #f7f2e9;
+  --ivory: #f7f2e9;
+  --champagne: #c49a52;
+  --sage: #5f7568;
+  --ink: #1a2621;
+  --color-scrollbar: #c49a52;
 }
 
 ::-webkit-scrollbar {
