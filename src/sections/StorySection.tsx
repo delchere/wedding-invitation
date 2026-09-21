@@ -16,11 +16,6 @@ const StorySection: FC = () => {
 
   const renderChapter = (chapter: (typeof STORY_CHAPTERS)[number]): React.ReactNode => (
     <div key={chapter.id} className="story__chapter">
-      {chapter.titleKey && (
-        <p className="story__chapter-label">
-          {t('storyChapterPrefix')} {chapter.id.replace('ch', '')} — {t(chapter.titleKey)}
-        </p>
-      )}
       {chapter.bodyKeys.map((key) => (
         <p key={key} className="story__paragraph">
           {t(key)}

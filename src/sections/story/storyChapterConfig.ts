@@ -1,6 +1,5 @@
 export type StoryChapterConfig = {
   id: string
-  titleKey?: string
   bodyKeys: string[]
   progressStart: number
   progressEnd: number
@@ -15,42 +14,36 @@ export const STORY_CHAPTERS: StoryChapterConfig[] = [
   },
   {
     id: 'ch01',
-    titleKey: 'storyChapter01Title',
     bodyKeys: ['storyChapter01'],
     progressStart: 0.1,
     progressEnd: 0.22,
   },
   {
     id: 'ch02',
-    titleKey: 'storyChapter02Title',
     bodyKeys: ['storyChapter02'],
     progressStart: 0.22,
     progressEnd: 0.34,
   },
   {
     id: 'ch03',
-    titleKey: 'storyChapter03Title',
     bodyKeys: ['storyChapter03'],
     progressStart: 0.34,
     progressEnd: 0.46,
   },
   {
     id: 'ch04',
-    titleKey: 'storyChapter04Title',
     bodyKeys: ['storyChapter04a', 'storyChapter04b', 'storyChapter04c'],
     progressStart: 0.46,
     progressEnd: 0.62,
   },
   {
     id: 'ch05',
-    titleKey: 'storyChapter05Title',
     bodyKeys: ['storyChapter05'],
     progressStart: 0.62,
     progressEnd: 0.74,
   },
   {
     id: 'ch06',
-    titleKey: 'storyChapter06Title',
     bodyKeys: ['storyChapter06'],
     progressStart: 0.74,
     progressEnd: 0.84,

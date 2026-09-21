@@ -170,15 +170,6 @@ type StoryChapterBlockProps = {
   instantReveal?: boolean
 }
 
-const CHAPTER_NUMBERS: Record<string, string> = {
-  ch01: '01',
-  ch02: '02',
-  ch03: '03',
-  ch04: '04',
-  ch05: '05',
-  ch06: '06',
-}
-
 const StoryChapterBlock: FC<StoryChapterBlockProps> = ({ chapter, t, reducedMotion, instantReveal }) => {
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
@@ -189,19 +180,12 @@ const StoryChapterBlock: FC<StoryChapterBlockProps> = ({ chapter, t, reducedMoti
   const opacity = useTransform(scrollYProgress, [0, 0.4, 1], instantReveal || reducedMotion ? [1, 1, 1] : [0.12, 1, 1])
   const y = useTransform(scrollYProgress, [0, 1], instantReveal || reducedMotion ? [0, 0] : [22, 0])
 
-  const chapterNum = CHAPTER_NUMBERS[chapter.id]
-
   return (
     <motion.article
       ref={ref}
       className={`equation-story__chapter equation-story__chapter--${chapter.id}`}
       style={{ opacity, y }}
     >
-      {chapter.titleKey && chapterNum && (
-        <p className="equation-story__chapter-label">
-          {t('storyChapterPrefix')} {chapterNum} — {t(chapter.titleKey)}
-        </p>
-      )}
       {chapter.bodyKeys.map((key) => (
         <p key={key} className="equation-story__paragraph">
           {t(key)}
