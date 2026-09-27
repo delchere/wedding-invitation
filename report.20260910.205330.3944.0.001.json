@@ -1,0 +1,507 @@
+
+{
+  "header": {
+    "reportVersion": 5,
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "trigger": "OOMError",
+    "filename": "report.20260910.205330.3944.0.001.json",
+    "dumpEventTime": "2026-09-10T20:53:30Z",
+    "dumpEventTimeStamp": "1789073610635",
+    "processId": 3944,
+    "threadId": null,
+    "cwd": "C:\\Users\\Emman\\Downloads\\wedding-template-main\\wedding-template-main",
+    "commandLine": [
+      "C:\\Users\\Emman\\AppData\\Local\\GitHub CLI\\copilot\\copilot.exe",
+      "--no-warnings",
+      "--report-on-fatalerror",
+      "--optimize-for-size",
+      "--expose-gc",
+      "--no-maglev",
+      "--no-sparkplug",
+      "C:\\Users\\Emman\\AppData\\Local\\GitHub CLI\\copilot\\copilot.exe"
+    ],
+    "nodejsVersion": "v24.18.1",
+    "wordSize": 64,
+    "arch": "x64",
+    "platform": "win32",
+    "componentVersions": {
+      "acorn": "8.16.0",
+      "ada": "3.4.4",
+      "amaro": "1.1.9",
+      "ares": "1.34.6",
+      "brotli": "1.2.0",
+      "cldr": "48.0",
+      "icu": "78.3",
+      "llhttp": "9.4.3",
+      "merve": "1.2.2",
+      "modules": "137",
+      "napi": "10",
+      "nbytes": "0.1.4",
+      "ncrypto": "0.0.1",
+      "nghttp2": "1.69.0",
+      "nghttp3": "",
+      "ngtcp2": "",
+      "node": "24.18.1",
+      "openssl": "3.5.7",
+      "simdjson": "4.6.4",
+      "simdutf": "6.4.0",
+      "sqlite": "3.53.1",
+      "tz": "2026b",
+      "undici": "7.29.0",
+      "unicode": "17.0",
+      "uv": "1.52.1",
+      "uvwasi": "0.0.23",
+      "v8": "13.6.233.17-node.50",
+      "zlib": "1.3.1-e00f703",
+      "zstd": "1.5.7"
+    },
+    "release": {
+      "name": "node",
+      "lts": "Krypton",
+      "headersUrl": "https://nodejs.org/download/release/v24.18.1/node-v24.18.1-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v24.18.1/node-v24.18.1.tar.gz",
+      "libUrl": "https://nodejs.org/download/release/v24.18.1/win-x64/node.lib"
+    },
+    "osName": "Windows_NT",
+    "osRelease": "10.0.26100",
+    "osVersion": "Windows 11 Pro N",
+    "osMachine": "x86_64",
+    "cpus": [
+      {
+        "model": "Intel(R) Core(TM) i7-6600U CPU @ 2.60GHz",
+        "speed": 2808,
+        "user": 35039640,
+        "nice": 0,
+        "sys": 27135640,
+        "idle": 51768640,
+        "irq": 1507656
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-6600U CPU @ 2.60GHz",
+        "speed": 2808,
+        "user": 38977328,
+        "nice": 0,
+        "sys": 25250562,
+        "idle": 49715937,
+        "irq": 797359
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-6600U CPU @ 2.60GHz",
+        "speed": 2808,
+        "user": 44873906,
+        "nice": 0,
+        "sys": 25497953,
+        "idle": 43571968,
+        "irq": 752859
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-6600U CPU @ 2.60GHz",
+        "speed": 2808,
+        "user": 51046968,
+        "nice": 0,
+        "sys": 24428421,
+        "idle": 38468453,
+        "irq": 664187
+      }
+    ],
+    "networkInterfaces": [
+      {
+        "name": "Wi-Fi",
+        "internal": false,
+        "mac": "e4:b3:18:16:4c:3e",
+        "address": "10.10.5.72",
+        "netmask": "255.255.255.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "Loopback Pseudo-Interface 1",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "::1",
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "Loopback Pseudo-Interface 1",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "family": "IPv4"
+      }
+    ],
+    "host": "Emmanuel"
+  },
+  "javascriptStack": {
+    "message": "No stack.",
+    "stack": [
+      "Unavailable."
+    ],
+    "errorProperties": {
+    }
+  },
+  "javascriptHeap": {
+    "totalMemory": 71680000,
+    "executableMemory": 4296704,
+    "totalCommittedMemory": 71680000,
+    "availableMemory": 4236372544,
+    "totalGlobalHandlesMemory": 127048,
+    "usedGlobalHandlesMemory": 96320,
+    "usedMemory": 62580872,
+    "memoryLimit": 4298113024,
+    "mallocedMemory": 1105968,
+    "externalMemory": 70141736,
+    "peakMallocedMemory": 204217432,
+    "nativeContextCount": 2,
+    "detachedContextCount": 0,
+    "doesZapGarbage": 0,
+    "heapSpaces": {
+      "read_only_space": {
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 0,
+        "used": 0,
+        "available": 0
+      },
+      "new_space": {
+        "memorySize": 1048576,
+        "committedMemory": 1048576,
+        "capacity": 1048512,
+        "used": 1048512,
+        "available": 0
+      },
+      "old_space": {
+        "memorySize": 59633664,
+        "committedMemory": 59633664,
+        "capacity": 59458936,
+        "used": 51516360,
+        "available": 7942576
+      },
+      "code_space": {
+        "memorySize": 3670016,
+        "committedMemory": 3670016,
+        "capacity": 3669568,
+        "used": 3265536,
+        "available": 404032
+      },
+      "shared_space": {
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 0,
+        "used": 0,
+        "available": 0
+      },
+      "trusted_space": {
+        "memorySize": 5087232,
+        "committedMemory": 5087232,
+        "capacity": 5073216,
+        "used": 4528880,
+        "available": 544336
+      },
+      "shared_trusted_space": {
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 0,
+        "used": 0,
+        "available": 0
+      },
+      "new_large_object_space": {
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 1048576,
+        "used": 0,
+        "available": 1048576
+      },
+      "large_object_space": {
+        "memorySize": 1212416,
+        "committedMemory": 1212416,
+        "capacity": 1199616,
+        "used": 1199616,
+        "available": 0
+      },
+      "code_large_object_space": {
+        "memorySize": 626688,
+        "committedMemory": 626688,
+        "capacity": 623744,
+        "used": 623744,
+        "available": 0
+      },
+      "shared_large_object_space": {
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 0,
+        "used": 0,
+        "available": 0
+      },
+      "shared_trusted_large_object_space": {
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 0,
+        "used": 0,
+        "available": 0
+      },
+      "trusted_large_object_space": {
+        "memorySize": 401408,
+        "committedMemory": 401408,
+        "capacity": 398224,
+        "used": 398224,
+        "available": 0
+      }
+    }
+  },
+  "nativeStack": [
+    {
+      "pc": "0x00007ff6e8040c37",
+      "symbol": "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __cdecl node::GetAnonymousMainPath(void)+292071"
+    },
+    {
+      "pc": "0x00007ff6e803d10d",
+      "symbol": "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __cdecl node::GetAnonymousMainPath(void)+276925"
+    },
+    {
+      "pc": "0x00007ff6e8042fa8",
+      "symbol": "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __cdecl node::TriggerNodeReport(class v8::Isolate * __ptr64,char const * __ptr64,char const * __ptr64,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const & __ptr64,class v8::Local<class v8::Value>)+216"
+    },
+    {
+      "pc": "0x00007ff6e8114817",
+      "symbol": "void __cdecl node::OnFatalError(char const * __ptr64,char const * __ptr64)+1143"
+    },
+    {
+      "pc": "0x00007ff6e6d5dcb7",
+      "symbol": "public: class v8::MaybeLocal<class v8::Object> __cdecl v8::Function::NewInstance(class v8::Local<class v8::Context>,int,class v8::Local<class v8::Value> * __ptr64 const)const __ptr64+423"
+    },
+    {
+      "pc": "0x00007ff6e6b5e4f7",
+      "symbol": "EVP_MD_get0_provider+54423"
+    },
+    {
+      "pc": "0x00007ff6e6af6aeb",
+      "symbol": "BIO_get_data+76331"
+    },
+    {
+      "pc": "0x00007ff6e6ace51e",
+      "symbol": "X509_STORE_get_get_issuer+28894"
+    },
+    {
+      "pc": "0x00007ff6e6b60f92",
+      "symbol": "EVP_MD_get0_provider+65330"
+    },
+    {
+      "pc": "0x00007ff6e6b5ff47",
+      "symbol": "EVP_MD_get0_provider+61159"
+    },
+    {
+      "pc": "0x00007ff6e6b70e82",
+      "symbol": "protected: void __cdecl v8::internal::StrongRootAllocatorBase::deallocate_impl(unsigned __int64 * __ptr64,unsigned __int64) __ptr64+15858"
+    },
+    {
+      "pc": "0x00007ff6e6b709ab",
+      "symbol": "protected: void __cdecl v8::internal::StrongRootAllocatorBase::deallocate_impl(unsigned __int64 * __ptr64,unsigned __int64) __ptr64+14619"
+    },
+    {
+      "pc": "0x00007ff6e84433ad",
+      "symbol": "public: __cdecl node::AsyncResource::CallbackScope::CallbackScope(class node::AsyncResource * __ptr64) __ptr64+2184381"
+    },
+    {
+      "pc": "0x00007ff6e6b5bfc0",
+      "symbol": "EVP_MD_get0_provider+44896"
+    },
+    {
+      "pc": "0x00007ff6e6b7681a",
+      "symbol": "X509_STORE_set_cleanup+5098"
+    },
+    {
+      "pc": "0x00007ff6e6b82cb6",
+      "symbol": "uv_timer_set_repeat+20694"
+    },
+    {
+      "pc": "0x00007ff6e6753907",
+      "symbol": "public: class v8::Local<class v8::Value> __cdecl v8::ScriptOrigin::SourceMapUrl(void)const __ptr64+131959"
+    },
+    {
+      "pc": "0x000001ce4c0775fa",
+      "symbol": ""
+    }
+  ],
+  "resourceUsage": {
+    "free_memory": 3950276608,
+    "total_memory": 17066262528,
+    "rss": 248991744,
+    "available_memory": 3950202880,
+    "userCpuSeconds": 842.312,
+    "kernelCpuSeconds": 40.359,
+    "cpuConsumptionPercent": 6.82284,
+    "userCpuConsumptionPercent": 6.51088,
+    "kernelCpuConsumptionPercent": 0.311966,
+    "maxRss": 435687424,
+    "pageFaults": {
+      "IORequired": 1563788,
+      "IONotRequired": 0
+    },
+    "fsActivity": {
+      "reads": 21570,
+      "writes": 2385
+    }
+  },
+  "uvthreadResourceUsage": {
+    "userCpuSeconds": 544.734,
+    "kernelCpuSeconds": 18.828,
+    "cpuConsumptionPercent": 4.3562,
+    "userCpuConsumptionPercent": 4.21067,
+    "kernelCpuConsumptionPercent": 0.145536,
+    "fsActivity": {
+      "reads": 0,
+      "writes": 0
+    }
+  },
+  "libuv": [
+  ],
+  "workers": [
+  ],
+  "environmentVariables": {
+    "=::": "::\\",
+    "=C:": "C:\\Users\\Emman\\AppData\\Local\\Programs\\Microsoft VS Code",
+    "ALLUSERSPROFILE": "C:\\ProgramData",
+    "ANDROID_HOME": "C:\\Users\\Emman\\AppData\\Local\\Android\\Sdk",
+    "APPDATA": "C:\\Users\\Emman\\AppData\\Roaming",
+    "ChocolateyInstall": "C:\\ProgramData\\chocolatey",
+    "ChocolateyLastPathUpdate": "134167107751768556",
+    "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_692_SQACDYDLDVIYYJKI",
+    "CLAUDE_CODE_SSE_PORT": "55926",
+    "COLORTERM": "truecolor",
+    "CommonProgramFiles": "C:\\Program Files\\Common Files",
+    "CommonProgramFiles(x86)": "C:\\Program Files (x86)\\Common Files",
+    "CommonProgramW6432": "C:\\Program Files\\Common Files",
+    "COMPUTERNAME": "EMMANUEL",
+    "ComSpec": "C:\\WINDOWS\\system32\\cmd.exe",
+    "COPILOT_CLI_BINARY_VERSION": "1.0.82",
+    "COPILOT_GH": "true",
+    "COPILOT_LOADER_PID": "3944",
+    "DriverData": "C:\\Windows\\System32\\Drivers\\DriverData",
+    "EFC_5852_1592913036": "1",
+    "GEMINI_CLI_IDE_AUTH_TOKEN": "2e3d08c4-3db3-46ac-b762-90c7543f35ae",
+    "GEMINI_CLI_IDE_SERVER_PORT": "57445",
+    "GEMINI_CLI_IDE_WORKSPACE_PATH": "c:\\Users\\Emman\\Downloads\\wedding-template-main",
+    "GIT_ASKPASS": "c:\\Users\\Emman\\AppData\\Roaming\\Code\\User\\globalStorage\\vscode.git\\askpass\\70789581cae28aa7\\askpass.sh",
+    "HOMEDRIVE": "C:",
+    "HOMEPATH": "\\Users\\Emman",
+    "JAVA_HOME": "C:\\Program Files\\Microsoft\\jdk-11.0.31.11-hotspot\\",
+    "LANG": "en_US.UTF-8",
+    "LOCALAPPDATA": "C:\\Users\\Emman\\AppData\\Local",
+    "LOGONSERVER": "\\\\EMMANUEL",
+    "NDK_HOME": "C:\\Users\\Emman\\AppData\\Local\\Android\\Sdk\\ndk\\29.0.14033849",
+    "NoDefaultCurrentDirectoryInExePath": "1",
+    "NODE_ENV": "production",
+    "NUMBER_OF_PROCESSORS": "4",
+    "OneDrive": "C:\\Users\\Emman\\OneDrive",
+    "OneDriveConsumer": "C:\\Users\\Emman\\OneDrive",
+    "OS": "Windows_NT",
+    "Path": "C:\\Program Files\\Microsoft\\jdk-11.0.31.11-hotspot\\bin;C:\\Python314\\Scripts\\;C:\\Python314\\;C:\\Program Files\\Microsoft\\jdk-17.0.18.8-hotspot\\bin;C:\\Program Files\\Addinsoft\\XLSTAT\\;C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files (x86)\\Microsoft SQL Server\\160\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\160\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\160\\DTS\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\Docker\\Docker\\resources\\bin;%ANDROID_HOME%\\platform-tools;%ANDROID_HOME%\\emulator;C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\;C:\\Users\\Emman\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\Scripts;C:\\Program Files\\dotnet\\;C:\\ProgramData\\chocolatey\\bin;C:\\glpk-4.65\\w64;C:\\Users\\Emman\\Downloads\\apache-maven-3.9.15-bin\\apache-maven-3.9.15\\bin;C:\\Users\\Emman\\Downloads\\apache-ant-1.10.17-bin\\apache-ant-1.10.17\\bin;C:\\Program Files\\MATLAB\\R2025a\\bin;C:\\Program Files\\GitHub CLI\\;C:\\Program Files\\nodejs\\;C:\\Users\\Emman\\.cargo\\bin;C:\\Users\\Emman\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\Emman\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\Emman\\AppData\\Local\\Google\\Cloud SDK\\google-cloud-sdk\\bin;C:\\Users\\Emman\\AppData\\Local\\Android\\Sdk\\platform-tools;C:\\Users\\Emman\\AppData\\Local\\Android\\Sdk\\ndk\\29.0.14033849;C:\\Users\\Emman\\.dotnet\\tools;C:\\Users\\Emman\\AppData\\Local\\Programs\\Ollama;C:\\glpk-4.65\\w64;C:\\Users\\Emman\\Downloads\\apache-maven-3.9.15-bin\\apache-maven-3.9.15\\bin;C:\\Users\\Emman\\Downloads\\apache-ant-1.10.17-bin\\apache-ant-1.10.17\\bin;C:\\Users\\Emman\\AppData\\Roaming\\npm;C:\\Users\\Emman\\AppData\\Local\\Programs\\Antigravity IDE\\bin;C:\\Users\\Emman\\flutter\\bin;",
+    "PATHEXT": ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW;.CPL",
+    "PROCESSOR_ARCHITECTURE": "AMD64",
+    "PROCESSOR_IDENTIFIER": "Intel64 Family 6 Model 78 Stepping 3, GenuineIntel",
+    "PROCESSOR_LEVEL": "6",
+    "PROCESSOR_REVISION": "4e03",
+    "ProgramData": "C:\\ProgramData",
+    "ProgramFiles": "C:\\Program Files",
+    "ProgramFiles(x86)": "C:\\Program Files (x86)",
+    "ProgramW6432": "C:\\Program Files",
+    "PSModulePath": "C:\\Users\\Emman\\Documents\\WindowsPowerShell\\Modules;C:\\Users\\Emman\\AppData\\Local\\Google\\Cloud SDK\\google-cloud-sdk\\platform\\PowerShell;C:\\Program Files\\WindowsPowerShell\\Modules;C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules;C:\\Program Files (x86)\\Microsoft SQL Server\\160\\Tools\\PowerShell\\Modules\\",
+    "PUBLIC": "C:\\Users\\Public",
+    "PYTHONSTARTUP": "c:\\Users\\Emman\\AppData\\Roaming\\Code\\User\\workspaceStorage\\b532371411ea6358838a2197f4abbcc1\\ms-python.python\\pythonrc.py",
+    "PYTHON_BASIC_REPL": "1",
+    "SESSIONNAME": "Console",
+    "SystemDrive": "C:",
+    "SystemRoot": "C:\\WINDOWS",
+    "TCELL_MINIMIZE": "1",
+    "TEMP": "C:\\Users\\Emman\\AppData\\Local\\Temp",
+    "TERM_PROGRAM": "vscode",
+    "TERM_PROGRAM_VERSION": "1.129.1",
+    "TMP": "C:\\Users\\Emman\\AppData\\Local\\Temp",
+    "USERDOMAIN": "EMMANUEL",
+    "USERDOMAIN_ROAMINGPROFILE": "EMMANUEL",
+    "USERNAME": "Emman",
+    "USERPROFILE": "C:\\Users\\Emman",
+    "VSCODE_GIT_ASKPASS_EXTRA_ARGS": "",
+    "VSCODE_GIT_ASKPASS_MAIN": "c:\\Users\\Emman\\AppData\\Roaming\\Code\\User\\globalStorage\\vscode.git\\askpass\\70789581cae28aa7\\askpass-main.js",
+    "VSCODE_GIT_ASKPASS_NODE": "C:\\Users\\Emman\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe",
+    "VSCODE_GIT_IPC_HANDLE": "\\\\.\\pipe\\vscode-git-f7b2a8fc04-sock",
+    "VSCODE_INJECTION": "1",
+    "VSCODE_PYTHON_AUTOACTIVATE_GUARD": "1",
+    "windir": "C:\\WINDOWS",
+    "ZES_ENABLE_SYSMAN": "1"
+  },
+  "sharedObjects": [
+    "C:\\Users\\Emman\\AppData\\Local\\GitHub CLI\\copilot\\copilot.exe",
+    "C:\\WINDOWS\\SYSTEM32\\ntdll.dll",
+    "C:\\WINDOWS\\System32\\KERNEL32.DLL",
+    "C:\\WINDOWS\\System32\\KERNELBASE.dll",
+    "C:\\WINDOWS\\System32\\CRYPT32.dll",
+    "C:\\WINDOWS\\System32\\ucrtbase.dll",
+    "C:\\WINDOWS\\System32\\WS2_32.dll",
+    "C:\\WINDOWS\\System32\\RPCRT4.dll",
+    "C:\\WINDOWS\\System32\\USER32.dll",
+    "C:\\WINDOWS\\System32\\win32u.dll",
+    "C:\\WINDOWS\\System32\\GDI32.dll",
+    "C:\\WINDOWS\\System32\\gdi32full.dll",
+    "C:\\WINDOWS\\System32\\msvcp_win.dll",
+    "C:\\WINDOWS\\System32\\ADVAPI32.dll",
+    "C:\\WINDOWS\\System32\\msvcrt.dll",
+    "C:\\WINDOWS\\System32\\sechost.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dbghelp.dll",
+    "C:\\WINDOWS\\System32\\combase.dll",
+    "C:\\WINDOWS\\System32\\SHELL32.dll",
+    "C:\\WINDOWS\\System32\\OLEAUT32.dll",
+    "C:\\WINDOWS\\System32\\wintypes.dll",
+    "C:\\WINDOWS\\System32\\ole32.dll",
+    "C:\\WINDOWS\\SYSTEM32\\IPHLPAPI.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\USERENV.dll",
+    "C:\\WINDOWS\\SYSTEM32\\WINMM.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dbgcore.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\CRYPTBASE.DLL",
+    "C:\\WINDOWS\\System32\\IMM32.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\powrprof.dll",
+    "C:\\WINDOWS\\SYSTEM32\\UMPDC.dll",
+    "C:\\WINDOWS\\System32\\bcryptprimitives.dll",
+    "C:\\WINDOWS\\system32\\uxtheme.dll",
+    "C:\\WINDOWS\\system32\\mswsock.dll",
+    "C:\\WINDOWS\\SYSTEM32\\CRYPTSP.dll",
+    "C:\\WINDOWS\\system32\\rsaenh.dll",
+    "C:\\WINDOWS\\SYSTEM32\\kernel.appcore.dll",
+    "\\\\?\\C:\\Users\\Emman\\AppData\\Local\\copilot\\pkg\\win32-x64\\1.0.83\\prebuilds\\win32-x64\\cli-native.node",
+    "C:\\WINDOWS\\SYSTEM32\\VCRUNTIME140.dll",
+    "\\\\?\\C:\\Users\\Emman\\AppData\\Local\\copilot\\pkg\\win32-x64\\1.0.83\\prebuilds\\win32-x64\\runtime.node",
+    "C:\\WINDOWS\\System32\\psapi.dll",
+    "C:\\WINDOWS\\System32\\wintrust.dll",
+    "C:\\WINDOWS\\SYSTEM32\\ncrypt.dll",
+    "C:\\WINDOWS\\SYSTEM32\\tdh.dll",
+    "C:\\WINDOWS\\SYSTEM32\\secur32.dll",
+    "C:\\WINDOWS\\SYSTEM32\\bcrypt.dll",
+    "C:\\WINDOWS\\SYSTEM32\\SSPICLI.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\NTASN1.dll",
+    "C:\\WINDOWS\\SYSTEM32\\MSASN1.dll",
+    "\\\\?\\C:\\Users\\Emman\\AppData\\Local\\copilot\\pkg\\win32-x64\\1.0.83\\prebuilds\\win32-x64\\msal-node-runtime.node",
+    "\\\\?\\C:\\Users\\Emman\\AppData\\Local\\copilot\\pkg\\win32-x64\\1.0.83\\prebuilds\\win32-x64\\msalruntime.dll",
+    "C:\\WINDOWS\\SYSTEM32\\WININET.dll",
+    "C:\\WINDOWS\\SYSTEM32\\windows.storage.dll",
+    "C:\\WINDOWS\\System32\\SHCORE.dll",
+    "C:\\WINDOWS\\System32\\shlwapi.dll",
+    "C:\\WINDOWS\\SYSTEM32\\DNSAPI.dll",
+    "C:\\WINDOWS\\System32\\NSI.dll",
+    "C:\\Windows\\System32\\rasadhlp.dll",
+    "C:\\WINDOWS\\System32\\fwpuclnt.dll",
+    "C:\\WINDOWS\\SYSTEM32\\gpapi.dll",
+    "C:\\Windows\\System32\\cryptnet.dll",
+    "C:\\WINDOWS\\SYSTEM32\\profapi.dll",
+    "C:\\WINDOWS\\SYSTEM32\\WINNSI.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\WINHTTP.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc6.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\webio.dll",
+    "C:\\WINDOWS\\system32\\napinsp.dll",
+    "C:\\WINDOWS\\System32\\winrnr.dll",
+    "C:\\WINDOWS\\system32\\nlansp_c.dll",
+    "C:\\WINDOWS\\system32\\wshbth.dll"
+  ]
+}
