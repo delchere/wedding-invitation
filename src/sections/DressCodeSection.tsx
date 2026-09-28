@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import ScrollReveal from '@/components/ScrollReveal'
 import { useLocale } from '@/context/locale-context'
+import DressCodeMannequins from './dress-code/DressCodeMannequins'
 
 const HeartIcon: FC = () => (
   <svg className="dress-code-heart" viewBox="0 0 24 22" aria-hidden="true">
@@ -46,7 +47,7 @@ const DressCodeSection: FC = () => {
                 ))}
               </ul>
 
-
+              <DressCodeMannequins />
             </div>
           </div>
 
