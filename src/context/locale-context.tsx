@@ -52,29 +52,25 @@ const translations: Record<Locale, Record<string, string>> = {
     storyReadMore: 'Lire la suite',
     storyReadLess: 'Replier',
     storyIntro:
-      'Parfois, ce qui semble n’être qu’un épisode dans une vie devient, avec le temps, le début d’un tout autre récit.',
+      'Parfois, la vie a une manière bien singulière de faire se rencontrer deux personnes. On s’imagine simplement ouvrir un nouveau chapitre, pour ne réaliser que bien plus tard que l’on rencontrait celui ou celle qui allait bouleverser toute l’histoire.',
     storyChapter01:
-      'En 2022, nos chemins se sont croisés à AIMS Cameroon, dans un cadre consacré à la recherche et aux sciences. À ce moment-là, rien ne laissait présager que cette rencontre deviendrait le début de l’histoire que nous écrivons aujourd’hui.',
+      'En 2022, nos chemins se sont croisés à AIMS Cameroon, au milieu de la recherche, de la science et des idées, et du moins à l’époque, sans aucun signe évident que nous étions à l’aube de quelque chose de bien plus grand. Nous nous sommes rencontrés en tant que collègues et parlions de travail, de recherche et de projets. Des choses très sérieuses. Du moins, c’est ce que nous pensions.',
     storyChapter02:
-      'Après cette période, les échanges ont continué. D’abord autour du travail, de la recherche et des projets, puis progressivement autour de bien plus que cela. Les conversations sont devenues plus personnelles, les appels plus fréquents, et nous avons commencé à nous découvrir autrement.',
-    storyChapter03: `Sans vraiment nous en rendre compte, le respect s’est transformé en confiance, la confiance en amitié, et l’amitié en complicité. Puis, lorsque la complicité a commencé à laisser place à l’attirance, une question s’est naturellement imposée :
-Et si cette histoire était en train de devenir autre chose ?`,
+      'Après ce chapitre à AIMS, les conversations se sont poursuivies. Puis elles sont devenues plus longues. Les appels, plus fréquents. Et d’une certaine façon, les échanges qui commençaient autrefois par « Comment avance la recherche ? » se sont mis à dévier vers tout le reste : la vie, la famille, les rêves, la foi, les ambitions et toutes ces petites choses qui font ce que nous sommes.',
+    storyChapter03: `Quelque part sur ce chemin, quelque chose a changé. Le respect est devenu confiance, la confiance s’est muée en amitié, et l’amitié est devenue discrètement quelque chose de plus profond. Puis est venue cette question qu’aucun de nous ne pouvait tout à fait ignorer : « Attends… est-ce que cela ne serait pas en train de devenir quelque chose de plus ? »`,
     storyChapter04a:
-      'Nos réalités, nos cultures étaient différentes, et la distance faisait encore partie de l’équation.',
+      'Il y avait, bien sûr, cette question de la distance. Des parcours différents. Des cultures différentes. Et toutes ces raisons pratiques pour lesquelles les choses auraient pu paraître compliquées.',
     storyChapter04b:
-      'Au fil du temps, nous avons découvert que ce qui nous rapprochait allait bien au-delà de l’attirance. La famille, le respect, la foi, le travail, l’ambition, et le désir de nous soutenir dans nos projets étaient autant de valeurs que nous partagions.',
-    storyChapter04c: 'L’équation commençait à prendre forme.',
-    storyChapter05: `Puis est arrivée la rencontre en personne.
-Ce moment n’a pas créé quelque chose qui n’existait pas encore.
-Il a donné une réalité à quelque chose qui avait déjà grandi entre nous.`,
-    storyChapter06: `À partir de là, il ne s’agissait plus seulement de comprendre ce que nous ressentions, mais de décider ce que nous voulions en faire.
-Nous avons choisi de nous engager l’un envers l’autre et de construire une vie qui nous ressemble.`,
+      'Mais ce qui est fascinant avec l’amour, c’est qu’il ne suit pas toujours l’équation la plus évidente. Plus nous apprenions à nous connaître, plus nous découvrions que nous partagions ce qui compte le plus : la famille, la foi, le respect, le sens profond de nos vies, l’ambition et le désir mutuel de grandir ensemble.',
+    storyChapter04c: 'Lentement, l’équation commençait à prendre tout son sens.',
+    storyChapter05: `Puis est arrivé le moment où nous nous sommes enfin rencontrés en personne. Et d’une certaine façon, cela ressemblait moins à un commencement qu’à donner un visage, un sourire et une véritable étreinte à ce qui avait déjà grandi entre nous. Ce moment a tout changé. Il ne s’agissait plus seulement de se demander ce que nous ressentions ; il s’agissait de savoir ce que nous voulions en faire.`,
+    storyChapter06: `Et nous nous sommes choisis.
+Nous avons choisi de saisir cette magnifique et inattendue connexion pour en faire quelque chose de réel. Quelque chose d’intentionnel. Quelque chose qui mérite d’être bâti, protégé et cultivé ensemble. Notre histoire n’a peut-être pas suivi l’équation la plus simple. Il y avait des pays différents, des cultures différentes, la distance, le timing et tant d’inconnues. Mais à travers tout cela, une évidence n’a cessé de s’imposer : nous.`,
     storyEpilogue:
-      'Notre histoire n’est peut-être pas l’équation la plus simple. Mais elle est, sans aucun doute, l’une des plus belles que la vie ait mise sur notre chemin.',
-    storyFinalVariable: `Et après toutes ces étapes, une seule variable est devenue certaine :
-NOUS.`,
-    storyClosing: `Et parce qu’une belle histoire mérite d’être racontée jusqu’au bout, nous gardons encore quelques chapitres pour vous…
-La suite, le jour du mariage.`,
+      'Et c’est peut-être là le plus beau de cette histoire : non pas que tout ait été facile ou parfaitement prévisible, mais que, pas à pas, nous ayons continué à retrouver le chemin l’un vers l’autre. Nous continuons d’apprendre, de rire, de rêver et de nous choisir chaque jour.',
+    storyFinalVariable: `Nous voici donc aujourd’hui, avec une histoire née de façon totalement inattendue et qui nous a menés là où nous n’aurions jamais pu l’imaginer lorsque nos chemins se sont croisés en 2022.`,
+    storyClosing: `Et parce que chaque belle histoire mérite de garder quelques surprises, nous réservons les prochains chapitres pour vous. Vous devrez patienter encore un tout petit peu, car le prochain chapitre s’écrira le jour de notre mariage.
+Et cette fois, nous allons l’écrire ensemble. ❤️`,
     wedding: 'Le grand jour',
     weddingText: 'Nous vous attendons le samedi 9 janvier 2027 pour partager notre mariage religieux, puis célébrer ensemble lors de la réception.',
     weddingCountdownTitle: 'Le grand jour approche',
@@ -154,8 +150,17 @@ Merci du fond du cœur pour votre générosité et votre bienveillance.`,
     plusOneWithGuest: "+1 Invité(e)",
     guestNameLabel: "Nom et prénom de l'accompagnant(e)",
     guestNamePlaceholder: "Nom complet de votre invité(e)",
-    dietaryOrMessageLabel: "Régime particulier ou petit mot pour les mariés",
-    dietaryOrMessagePlaceholder: "Restrictions alimentaires, allergies, chanson préférée ou vos vœux...",
+    dietaryOrMessageLabel: "Vœux de bonheur pour les mariés",
+    dietaryOrMessagePlaceholder: "Un message personnalisé, vœu ou précision (facultatif)...",
+    wishesSectionTitle: "Vœux chaleureux pour les mariés",
+    wishesSectionSubtitle: "Sélectionnez un vœu de bonheur pour accompagner votre réponse :",
+    wish1: "💍 Un mariage comblé d’amour, de paix et de joie infinie !",
+    wish2: "🕊️ Que votre foyer soit béni de prospérité, d’harmonie et de grâce divine.",
+    wish3: "🌟 Une merveilleuse vie à deux pleine d’aventures et de rêves accomplis !",
+    wish4: "🥂 Que votre amour grandisse chaque jour plus fort, main dans la main.",
+    wish5: "🤍 Un bonheur éclatant, une complicité éternelle et une douce sérénité.",
+    securityBadge: "Sécurisé",
+    rsvpSuccessWishLabel: "Votre vœu transmis",
     submitRsvpButton: "Confirmer ma réservation",
     submittingRsvp: "Envoi en cours...",
     rsvpSuccessTitle: "Merci infiniment !",
@@ -163,8 +168,6 @@ Merci du fond du cœur pour votre générosité et votre bienveillance.`,
     rsvpSuccessMaybe: "Votre réponse a bien été enregistrée. Nous espérons sincèrement que vous pourrez vous joindre à nous !",
     rsvpSuccessNo: "Votre message a bien été transmis. Vous serez avec nous en pensée pour ce grand jour.",
     rsvpEditButton: "Modifier ma réponse",
-    googleFormHelp: "Une question ou préférence particulière ?",
-    openGoogleFormLink: "Accéder au formulaire Google Forms",
     optional: "facultatif",
     menu: 'Navigation',
     photoPlaceholder: 'Photo individuelle ou montage IA à ajouter',
@@ -212,29 +215,25 @@ Merci du fond du cœur pour votre générosité et votre bienveillance.`,
     storyReadMore: 'Read more',
     storyReadLess: 'Show less',
     storyIntro:
-      'Sometimes, what seems like just one chapter in a life becomes, over time, the beginning of an entirely different story.',
+      'Sometimes, life has a funny way of introducing two people. You think you are simply starting a new chapter, and only later realise that you were actually meeting someone who would change the whole story.',
     storyChapter01:
-      'In 2022, our paths crossed at AIMS Cameroon, in an environment devoted to research and science. At the time, nothing suggested that this meeting would become the beginning of the story we are writing today.',
+      'In 2022, our paths crossed at AIMS Cameroon, surrounded by research, science, ideas, and at least at the time, absolutely no obvious sign that we were sitting at the beginning of something much bigger. We met as colleagues and talked about work, research and projects. Very serious things. Or so we thought.',
     storyChapter02:
-      'After that period, our conversations continued. At first, they centred on work, research and projects, then gradually became about so much more. Our conversations became more personal, our calls more frequent, and we began to discover one another in a different way.',
-    storyChapter03: `Without really noticing, respect became trust, trust became friendship, and friendship became a deep connection. Then, as that connection began to make room for attraction, a question naturally arose:
-What if this story was becoming something more?`,
+      'After that chapter at AIMS, the conversations continued. Then they became longer. The calls became more frequent. And somehow, the conversations that once began with “How is the research going?” started wandering into everything else, life, family, dreams, faith, ambitions, and all the little things that make us who we are.',
+    storyChapter03: `Somewhere along the way, something changed. Respect became trust, trust became friendship, and friendship quietly became something deeper. Then came the question neither of us could quite ignore: “Wait… is this becoming something more?”`,
     storyChapter04a:
-      'Our backgrounds and cultures were different, and distance was still part of the equation.',
+      'There was, of course, the small matter of distance. And different backgrounds. And different cultures. And all the practical reasons why perhaps this should have been complicated.',
     storyChapter04b:
-      'Over time, we discovered that what brought us closer went far beyond attraction. Family, respect, faith, work, ambition and the desire to support one another in our dreams were values we shared.',
-    storyChapter04c: 'The equation was beginning to take shape.',
-    storyChapter05: `Then came the moment when we met in person.
-That moment did not create something that had not existed before.
-It gave reality to something that had already grown between us.`,
-    storyChapter06: `From then on, it was no longer only about understanding what we felt, but deciding what we wanted to do with it.
-We chose to commit to one another and build a life that reflects who we are.`,
+      'But the funny thing about love is that it does not always follow the most obvious equation. The more we got to know each other, the more we discovered that we shared the things that mattered most: family, faith, respect, purpose, ambition, and the desire to see each other grow.',
+    storyChapter04c: 'Slowly, the equation was beginning to make sense.',
+    storyChapter05: `Then came the moment we finally met in person. And somehow, it felt less like the beginning and more like putting a face, a smile and a real embrace to something that had already been growing between us. That moment changed something. It was no longer just about asking what we felt; it became about asking what we wanted to do with it.`,
+    storyChapter06: `And we chose each other.
+We chose to take this beautiful, unexpected connection and turn it into something real. Something intentional. Something worth building, protecting and growing together. Our story may not have followed the simplest equation. There were different countries, different cultures, distance, timing, and plenty of unknown variables. But somehow, through it all, one thing kept becoming clearer: us.`,
     storyEpilogue:
-      'Our story may not be the simplest equation. But it is, without a doubt, one of the most beautiful that life has placed in our path.',
-    storyFinalVariable: `And after every one of these steps, one variable became certain:
-US.`,
-    storyClosing: `Because a beautiful story deserves to be told to the very end, we are still keeping a few chapters for you...
-The next chapter will be written on our wedding day.`,
+      'And perhaps that is the most beautiful part of the story, not that everything was easy or perfectly predictable, but that, step by step, we kept finding our way back to each other. We are still learning, still laughing, still dreaming, and still choosing each other.',
+    storyFinalVariable: `So here we are, with a story that began quite unexpectedly and has brought us to a place we could not have predicted when our paths first crossed in 2022.`,
+    storyClosing: `And because every beautiful story deserves a few surprises, we are keeping some of the next chapters for you. You will have to wait just a little longer, because the next chapter will be written on our wedding day.
+And this time, we get to write it together. ❤️`,
     wedding: 'The wedding day',
     weddingText: 'Join us on Saturday, January 9, 2027 to share in our religious wedding ceremony, then celebrate together at the reception.',
     weddingCountdownTitle: 'The big day is approaching',
@@ -314,8 +313,17 @@ Thank you from the bottom of our hearts for your generosity and kindness.`,
     plusOneWithGuest: "+1 Guest",
     guestNameLabel: "Guest Full Name",
     guestNamePlaceholder: "Full name of your guest",
-    dietaryOrMessageLabel: "Dietary restrictions, song request or wishes",
-    dietaryOrMessagePlaceholder: "Allergies, dietary requirements, favorite song or a note for the couple...",
+    dietaryOrMessageLabel: "Joyful Wishes for the Couple",
+    dietaryOrMessagePlaceholder: "A personal message or note for the newlyweds (optional)...",
+    wishesSectionTitle: "Heartfelt Wishes for the Couple",
+    wishesSectionSubtitle: "Select a joyful wish to accompany your RSVP:",
+    wish1: "💍 A marriage filled with endless love, peace, and boundless joy!",
+    wish2: "🕊️ May your home be blessed with prosperity, harmony, and divine grace.",
+    wish3: "🌟 A wonderful life together filled with adventures and fulfilled dreams!",
+    wish4: "🥂 May your love grow stronger with each passing day, hand in hand.",
+    wish5: "🤍 Radiant happiness, everlasting companionship, and sweet serenity.",
+    securityBadge: "Secure",
+    rsvpSuccessWishLabel: "Your warm wish",
     submitRsvpButton: "Confirm My Reservation",
     submittingRsvp: "Submitting...",
     rsvpSuccessTitle: "Thank you so much!",
@@ -323,8 +331,6 @@ Thank you from the bottom of our hearts for your generosity and kindness.`,
     rsvpSuccessMaybe: "Your response has been saved. We truly hope you will be able to join us!",
     rsvpSuccessNo: "Your response has been noted. You will be in our thoughts on this special day.",
     rsvpEditButton: "Edit my response",
-    googleFormHelp: "Having any issues with the form?",
-    openGoogleFormLink: "Open Google Forms directly",
     optional: "optional",
     menu: 'Navigation',
     photoPlaceholder: 'Individual photo or AI montage to add',

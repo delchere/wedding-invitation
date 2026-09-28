@@ -58,9 +58,14 @@ export function MyCustomApp({ Component, pageProps }: AppProps & CustomAppProps)
         <meta name="theme-color" content="#f7f2e9" />
         <meta
           name="description"
-          content={`We're happy to invite you to ${weddingConfig.people.bride.firstName} and ${weddingConfig.people.groom.firstName}'s wedding.`}
+          content={`D × I — We're happy to invite you to ${weddingConfig.people.bride.firstName} and ${weddingConfig.people.groom.firstName}'s wedding.`}
         />
-        <title>{weddingConfig.date.date}</title>
+        <meta property="og:title" content={`D × I — ${weddingConfig.date.date}`} />
+        <meta
+          property="og:description"
+          content={`D × I — ${weddingConfig.people.bride.firstName} & ${weddingConfig.people.groom.firstName} — ${weddingConfig.date.date}`}
+        />
+        <title>{`D × I — ${weddingConfig.date.date}`}</title>
       </Head>
       <MUIProvider>
         <CssBaseline />

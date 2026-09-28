@@ -1743,33 +1743,121 @@ a {
 .form-security-badge {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  gap: 6px;
   font-family: "DM Mono", monospace;
-  font-size: 0.52rem;
-  letter-spacing: 0.1em;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: var(--inv-sage);
+  text-transform: uppercase;
+  background: rgba(196, 154, 82, 0.08);
+  border: 1px solid rgba(196, 154, 82, 0.25);
+  padding: 6px 14px;
+  border-radius: 999px;
+  margin: 4px auto 0;
+}
+
+.security-icon {
+  font-size: 0.8rem;
+}
+
+/* Wishes Selection in RSVP Form */
+.wishes-section-subtitle {
+  font-size: 0.92rem;
+  color: var(--inv-sage);
+  margin: -4px 0 16px;
+  line-height: 1.45;
+}
+
+.wishes-selection-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.wish-option-card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 1.5px solid rgba(196, 154, 82, 0.25);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  user-select: none;
+}
+
+.wish-option-card:hover {
+  border-color: var(--inv-gold);
+  background: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(196, 154, 82, 0.12);
+}
+
+.wish-option-card--active {
+  border-color: var(--inv-gold-deep);
+  background: linear-gradient(135deg, rgba(251, 249, 244, 0.95), rgba(247, 242, 233, 0.95));
+  box-shadow: 0 6px 20px rgba(196, 154, 82, 0.18);
+}
+
+.wish-option-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 28px;
+  padding-top: 2px;
+}
+
+.wish-option-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid var(--inv-gold);
+  background: #ffffff;
+  color: var(--inv-gold-deep);
+  font-size: 0.75rem;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.wish-option-card--active .wish-option-check {
+  background: var(--inv-gold-deep);
+  border-color: var(--inv-gold-deep);
+  color: #ffffff;
+}
+
+.wish-option-num {
+  font-family: "DM Mono", monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.05em;
   color: var(--inv-sage);
   text-transform: uppercase;
 }
 
-.security-icon {
-  font-size: 0.75rem;
+.wish-option-content {
+  flex: 1;
 }
 
-.reservation-form__fallback {
-  font-size: 0.85rem;
-  color: var(--inv-sage);
+.wish-option-text {
+  font-size: 0.95rem;
+  color: var(--inv-ink);
+  line-height: 1.5;
   margin: 0;
+  font-weight: 500;
 }
 
-.reservation-form__google-link {
-  color: var(--inv-gold-deep);
-  text-decoration: underline;
-  text-underline-offset: 3px;
+.wish-option-card--active .wish-option-text {
+  color: #1a2621;
   font-weight: 600;
-}
-
-.reservation-form__google-link:hover {
-  color: var(--inv-sage-deep);
 }
 
 /* Reservation Success Card */
@@ -1829,6 +1917,27 @@ a {
   justify-content: space-between;
   align-items: center;
   font-size: 0.95rem;
+}
+
+.summary-item--wish {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding-top: 6px;
+  border-top: 1px dashed rgba(196, 154, 82, 0.3);
+}
+
+.summary-wish-text {
+  margin: 0;
+  font-style: italic;
+  color: var(--inv-sage-deep);
+  font-size: 0.95rem;
+  line-height: 1.45;
+  background: rgba(196, 154, 82, 0.08);
+  padding: 8px 12px;
+  border-radius: 8px;
+  border-left: 3px solid var(--inv-gold);
+  width: 100%;
 }
 
 .summary-label {

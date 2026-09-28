@@ -31,31 +31,43 @@ Le système utilise **Nodemailer** pour envoyer :
 
 ## 2. 📊 Configuration de Google Sheets (Enregistrement en direct)
 
-Un script prêt à l'emploi est inclus dans [`scripts/GoogleAppsScript_RSVP.js`](./GoogleAppsScript_RSVP.js).
+Un script complet et amélioré est inclus dans [`scripts/GoogleAppsScript_RSVP.js`](./GoogleAppsScript_RSVP.js).
 
-### Étapes d'installation (2 minutes) :
-1. Ouvrez Google Sheets et créez une feuille de calcul intitulée par exemple : **"Réservations Mariage Delchere & Ihechukwu"**.
-2. Dans la barre de menus, cliquez sur **Extensions** > **Apps Script**.
-3. Supprimez tout code existant dans la fenêtre et collez l'intégralité du code contenu dans le fichier [`scripts/GoogleAppsScript_RSVP.js`](./GoogleAppsScript_RSVP.js).
-4. Cliquez sur l'icône **Enregistrer** 💾.
-5. Cliquez sur le bouton bleu **Déployer** (en haut à droite) > **Nouveau déploiement**.
-6. Cliquez sur l'icône d'engrenage ⚙️ à côté de *Sélectionner le type* et choisissez **Application Web**.
-7. Remplissez :
+### Étapes d'installation pas à pas :
+
+1. Ouvrez Google Sheets et créez votre feuille de calcul (ex: **"Réservations Mariage Delchere & Ihechukwu"**).
+   - Nommez votre premier onglet en bas **`Réservations`** (ou laissez le nom par défaut, le script gère les deux automatiquement !).
+2. Dans le menu en haut de votre Google Sheet, cliquez sur **Extensions** > **Apps Script**.
+3. Supprimez tout code existant dans la fenêtre et collez l'intégralité du code de [`scripts/GoogleAppsScript_RSVP.js`](./GoogleAppsScript_RSVP.js).
+4. *(Optionnel)* Tout en haut du script :
+   - `SHEET_NAME` : le nom de l'onglet (par défaut `"Réservations"`).
+   - `SPREADSHEET_ID` : si vous avez ouvert Apps Script depuis votre feuille, laissez vide `""`. Si vous utilisez un script autonome, collez l'ID qui se trouve dans l'URL de votre Google Sheet.
+5. Cliquez sur l'icône **Enregistrer** 💾.
+
+### Test immédiat en 1 clic (dans Apps Script) :
+Avant même de brancher le site, vous pouvez tester que le script écrit bien dans votre feuille :
+- Dans la barre d'outils en haut d'Apps Script, à côté de "Déboguer", choisissez la fonction **`testerEnregistrement`**.
+- Cliquez sur **Exécuter**.
+- Retournez sur votre Google Sheet : une ligne de test apparaît instantanément !
+
+### Déploiement de l'Application Web :
+6. Cliquez en haut à droite sur le bouton bleu **Déployer** > **Nouveau déploiement** (ou *Gérer les déploiements* > ✏️ *Modifier* si déjà déployé).
+7. Cliquez sur l'icône d'engrenage ⚙️ et choisissez **Application Web**.
+8. Renseignez :
    - **Description** : `Webhook RSVP Mariage`
    - **Exécuter en tant que** : `Moi (votre adresse email)`
-   - **Qui a accès** : `Tout le monde` *(indispensable pour que le formulaire puisse enregistrer les réponses sans demander de connexion Google aux invités)*.
-8. Cliquez sur **Déployer** et autorisez l'accès si Google vous le demande.
-9. Copiez l'**URL de l'application Web** qui vous est donnée (elle se termine par `/exec`).
-10. Ouvrez votre fichier `.env.local` et collez l'URL :
+   - **Qui a accès** : **`Tout le monde`** *(TRÈS IMPORTANT pour que le site puisse transmettre les formulaires sans demander de connexion Google à l'invité)*.
+9. Cliquez sur **Déployer** et autorisez l'accès si Google vous le demande.
+10. Copiez l'**URL de l'application Web** (qui se termine obligatoirement par `/exec`).
+11. Ouvrez votre fichier `.env.local` à la racine du projet et collez cette URL :
     ```env
     NEXT_PUBLIC_GOOGLE_SHEET_WEBHOOK_URL=https://script.google.com/macros/s/AKfycb.../exec
     GOOGLE_SHEET_WEBHOOK_URL=https://script.google.com/macros/s/AKfycb.../exec
     ```
 
-Dès cet instant, chaque soumission du formulaire :
-- Crée une ligne automatiquement dans votre Google Sheet (Nom, Email, Téléphone, Présence, +1, Régimes / Vœux).
-- Envoie un email aux mariés.
-- Envoie une confirmation à l'invité.
+> [!IMPORTANT]
+> Si vous modifiez le code dans Google Apps Script ultérieurement, vous devez toujours faire :
+> **Déployer** > **Gérer les déploiements** > ✏️ **Modifier** > **Version : Nouvelle version** > **Déployer**, sinon Google continue d'exécuter l'ancienne version.
 
 ---
 

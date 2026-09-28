@@ -2,11 +2,6 @@ import React, { FC, useState, useEffect, FormEvent } from 'react'
 import { useLocale } from '@/context/locale-context'
 import { buildGoogleCalendarUrl } from '@/utils/calendar'
 
-const GOOGLE_FORM_ACTION_URL =
-  'https://docs.google.com/forms/d/e/1FAIpQLSeqdrEvyJqORdq3EqIWna6fEGRfB3mDN2ag-TPrvM8fASZSnQ/formResponse'
-const GOOGLE_FORM_VIEW_URL =
-  'https://docs.google.com/forms/d/e/1FAIpQLSeqdrEvyJqORdq3EqIWna6fEGRfB3mDN2ag-TPrvM8fASZSnQ/viewform'
-
 const STORAGE_KEY = 'wedding_rsvp_submission_v2'
 
 type AttendanceOption = 'yes' | 'no' | 'maybe'
@@ -17,25 +12,48 @@ const GOOGLE_ATTENDANCE_MAP: Record<AttendanceOption, string> = {
   maybe: 'Peut-être / Maybe',
 }
 
-const QUICK_SUGGESTIONS_FR = [
-  '🥗 Végétarien',
-  '🌾 Sans gluten',
-  '🥩 Halal',
-  '🚫 Sans porc',
-  '✨ Aucune restriction',
-  '🎵 Demande de chanson',
-  '❤️ Tous nos vœux de bonheur !',
-]
+const WISH_KEYS = ['wish1', 'wish2', 'wish3', 'wish4', 'wish5'] as const
 
-const QUICK_SUGGESTIONS_EN = [
-  '🥗 Vegetarian',
-  '🌾 Gluten free',
-  '🥩 Halal',
-  '🚫 Pork-free',
-  '✨ No restrictions',
-  '🎵 Song request',
-  '❤️ Congratulations to the couple!',
-]
+const triggerJoyfulConfetti = async (): Promise<void> => {
+  try {
+    const confettiModule = await import('canvas-confetti')
+    const confetti = confettiModule.default || confettiModule
+    const end = Date.now() + 2.5 * 1000
+    const colors = ['#c49a52', '#3f5248', '#d6be96', '#ffffff', '#e3a857', '#ff6b81']
+
+    const frame = (): void => {
+      confetti({
+        particleCount: 4,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0, y: 0.7 },
+        colors,
+      })
+      confetti({
+        particleCount: 4,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1, y: 0.7 },
+        colors,
+      })
+
+      if (Date.now() < end) {
+        requestAnimationFrame(frame)
+      }
+    }
+    frame()
+
+    // Grand central celebratory burst
+    confetti({
+      particleCount: 90,
+      spread: 90,
+      origin: { y: 0.6 },
+      colors,
+    })
+  } catch (err) {
+    console.warn('Confetti animation error:', err)
+  }
+}
 
 const ReservationForm: FC = () => {
   const { t, locale } = useLocale()
@@ -46,7 +64,7 @@ const ReservationForm: FC = () => {
   const [attendance, setAttendance] = useState<AttendanceOption>('yes')
   const [hasPlusOne, setHasPlusOne] = useState(false)
   const [guestName, setGuestName] = useState('')
-  const [dietaryOrMessage, setDietaryOrMessage] = useState('')
+  const [selectedWishKey, setSelectedWishKey] = useState<string>('wish1')
 
   const [emailValid, setEmailValid] = useState<boolean | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -56,10 +74,8 @@ const ReservationForm: FC = () => {
     attendance: AttendanceOption
     hasPlusOne: boolean
     guestName?: string
+    wish?: string
   } | null>(null)
-
-  // Quick suggestion chips based on active locale
-  const quickSuggestions = locale === 'en' ? QUICK_SUGGESTIONS_EN : QUICK_SUGGESTIONS_FR
 
   // Load previous submission from localStorage if present
   useEffect(() => {
@@ -88,22 +104,6 @@ const ReservationForm: FC = () => {
     return isValid
   }
 
-  // Toggle quick tag in dietary/message textarea
-  const handleToggleTag = (tag: string): void => {
-    setDietaryOrMessage((prev) => {
-      if (prev.includes(tag)) {
-        return prev
-          .replace(tag, '')
-          .replace(/,\s*,/g, ',')
-          .replace(/^\s*,\s*/, '')
-          .replace(/\s*,\s*$/, '')
-          .trim()
-      } else {
-        return prev ? `${prev}, ${tag}` : tag
-      }
-    })
-  }
-
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
     if (!fullName.trim() || !email.trim()) return
@@ -112,6 +112,8 @@ const ReservationForm: FC = () => {
     setSubmissionStep('sending')
 
     const attendanceValue = GOOGLE_ATTENDANCE_MAP[attendance]
+    const chosenWishText = t(selectedWishKey) || ''
+
     const payload = {
       fullName: fullName.trim(),
       email: email.trim(),
@@ -119,7 +121,7 @@ const ReservationForm: FC = () => {
       attendance,
       hasPlusOne,
       guestName: hasPlusOne ? guestName.trim() : '',
-      dietaryOrMessage: dietaryOrMessage.trim(),
+      dietaryOrMessage: chosenWishText,
       timestamp: new Date().toISOString(),
     }
 
@@ -153,36 +155,7 @@ const ReservationForm: FC = () => {
       }
     }
 
-    // 3. Native Google Forms submission (Records row automatically in linked Google Sheet)
-    let fullSubmissionName = fullName.trim()
-    if (hasPlusOne && guestName.trim()) {
-      fullSubmissionName += ` (+1: ${guestName.trim()})`
-    }
-    if (email.trim()) {
-      fullSubmissionName += ` [Email: ${email.trim()}]`
-    }
-    if (phone.trim()) {
-      fullSubmissionName += ` [Tél: ${phone.trim()}]`
-    }
-    if (dietaryOrMessage.trim()) {
-      fullSubmissionName += ` [Note: ${dietaryOrMessage.trim()}]`
-    }
-
-    try {
-      const formData = new FormData()
-      formData.append('entry.137059600', fullSubmissionName)
-      formData.append('entry.334886026', attendanceValue)
-
-      await fetch(GOOGLE_FORM_ACTION_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        body: formData,
-      })
-    } catch {
-      // Ignored for no-cors
-    }
-
-    // 4. Save locally so user sees confirmation card
+    // 3. Save locally so user sees confirmation card
     const savedState = {
       fullName: fullName.trim(),
       attendance,
@@ -190,7 +163,7 @@ const ReservationForm: FC = () => {
       guestName: guestName.trim(),
       email: email.trim(),
       phone: phone.trim(),
-      dietaryOrMessage: dietaryOrMessage.trim(),
+      wish: chosenWishText,
       date: new Date().toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US'),
     }
 
@@ -203,6 +176,9 @@ const ReservationForm: FC = () => {
     setSubmittedData(savedState)
     setIsSubmitting(false)
     setSubmissionStep('done')
+
+    // Trigger joyful confetti animation
+    triggerJoyfulConfetti()
   }
 
   const handleEdit = (): void => {
@@ -222,7 +198,7 @@ const ReservationForm: FC = () => {
             {t('rsvpSuccessTitle') || 'Merci infiniment !'}
           </h3>
           <p className="reservation-success-card__name">
-            Cher(e) <strong>{submittedData.fullName}</strong>,
+            {locale === 'en' ? 'Dear' : 'Cher(e)'} <strong>{submittedData.fullName}</strong>,
           </p>
 
           <div className="reservation-success-card__summary">
@@ -246,12 +222,20 @@ const ReservationForm: FC = () => {
                 <strong>{submittedData.guestName}</strong>
               </div>
             )}
+            {submittedData.wish && (
+              <div className="summary-item summary-item--wish">
+                <span className="summary-label">
+                  {t('rsvpSuccessWishLabel') || (locale === 'en' ? 'Your wish' : 'Votre vœu transmis')} :
+                </span>
+                <p className="summary-wish-text">“{submittedData.wish}”</p>
+              </div>
+            )}
           </div>
 
           <p className="reservation-success-card__desc">
             {submittedData.attendance === 'yes'
               ? (t('rsvpSuccessYes') ||
-                'Votre présence a bien été enregistrée et transmise par email et sur Google Sheet. Nous avons hâte de célébrer ce moment magique avec vous !')
+                'Votre présence a bien été enregistrée et transmise avec succès. Nous avons hâte de célébrer ce moment magique avec vous !')
               : submittedData.attendance === 'maybe'
               ? (t('rsvpSuccessMaybe') ||
                 'Votre réponse d’attente a bien été transmise. N’hésitez pas à revenir confirmer votre venue dès que votre calendrier sera fixé !')
@@ -292,7 +276,7 @@ const ReservationForm: FC = () => {
             </h3>
             <p className="reservation-form__instruction">
               {t('rsvpFormInstruction') ||
-                'Veuillez renseigner vos coordonnées ci-dessous. Votre réservation sera directement envoyée aux mariés et enregistrée.'}
+                'Veuillez renseigner vos coordonnées ci-dessous. Votre réservation sera directement transmise aux mariés.'}
             </p>
           </div>
 
@@ -397,7 +381,7 @@ const ReservationForm: FC = () => {
                   {t('attendingOptionYes') || 'Oui, je serai présent(e)'}
                 </span>
                 <span className="attendance-option__subtext">
-                  {locale === 'en' ? 'Célébrons ensemble !' : 'Avec grand bonheur !'}
+                  {locale === 'en' ? 'Celebrating together!' : 'Avec grand bonheur !'}
                 </span>
               </div>
             </label>
@@ -419,7 +403,7 @@ const ReservationForm: FC = () => {
                   {t('attendingOptionNo') || 'Je ne pourrai pas venir'}
                 </span>
                 <span className="attendance-option__subtext">
-                  {locale === 'en' ? 'En pensée avec vous' : 'Avec vous en pensée'}
+                  {locale === 'en' ? 'With you in spirit' : 'Avec vous en pensée'}
                 </span>
               </div>
             </label>
@@ -441,7 +425,7 @@ const ReservationForm: FC = () => {
                   {t('attendingOptionMaybe') || 'Peut-être'}
                 </span>
                 <span className="attendance-option__subtext">
-                  {locale === 'en' ? 'En attente de confirmation' : 'À confirmer d’ici fin octobre'}
+                  {locale === 'en' ? 'Pending confirmation' : 'À confirmer d’ici fin octobre'}
                 </span>
               </div>
             </label>
@@ -494,44 +478,45 @@ const ReservationForm: FC = () => {
             </div>
           )}
 
-          {/* Step 4: Quick Tags & Message */}
+          {/* Step 4: ONLY the 5 Joyful Wishes Selection */}
           <div className="form-section-title" style={{ marginTop: '24px' }}>
             <span className="form-section-number">{attendance === 'no' ? '3' : '4'}</span>
             <span>
-              {t('dietaryOrMessageLabel') || 'Régime alimentaire, musique ou petit mot'}
+              {t('wishesSectionTitle') || (locale === 'en' ? 'Heartfelt Wishes for the Couple' : 'Vœux de bonheur pour les mariés')}
             </span>
           </div>
 
-          <div className="quick-suggestions-wrap">
-            <span className="quick-suggestions-label">
-              {locale === 'en' ? '💡 Click to add quickly :' : '💡 Cliquez pour ajouter rapidement :'}
-            </span>
-            <div className="quick-suggestions-chips">
-              {quickSuggestions.map((tag) => (
-                <button
-                  key={tag}
-                  type="button"
-                  className={`quick-tag-chip ${dietaryOrMessage.includes(tag) ? 'quick-tag-chip--active' : ''}`}
-                  onClick={() => handleToggleTag(tag)}
+          <p className="wishes-section-subtitle">
+            {t('wishesSectionSubtitle') || (locale === 'en' ? 'Select a wish to accompany your RSVP:' : 'Choisissez un vœu de bonheur pour accompagner votre réponse :')}
+          </p>
+
+          <div className="wishes-selection-list" role="radiogroup" aria-label={t('wishesSectionTitle')}>
+            {WISH_KEYS.map((key, idx) => {
+              const isSelected = selectedWishKey === key
+              const wishText = t(key)
+              return (
+                <label
+                  key={key}
+                  className={`wish-option-card ${isSelected ? 'wish-option-card--active' : ''}`}
                 >
-                  {tag}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="reservation-field reservation-field--full" style={{ marginTop: '10px' }}>
-            <textarea
-              id="rsvp-notes"
-              rows={3}
-              className="reservation-textarea"
-              placeholder={
-                t('dietaryOrMessagePlaceholder') ||
-                'Allergies, régime particulier, chanson pour la soirée, ou vos vœux aux mariés...'
-              }
-              value={dietaryOrMessage}
-              onChange={(e) => setDietaryOrMessage(e.target.value)}
-            />
+                  <input
+                    type="radio"
+                    name="wedding-wish"
+                    value={key}
+                    checked={isSelected}
+                    onChange={() => setSelectedWishKey(key)}
+                    className="visually-hidden"
+                  />
+                  <div className="wish-option-indicator">
+                    <span className="wish-option-check">{isSelected ? '●' : '○'}</span>
+                    <span className="wish-option-num">#{idx + 1}</span>
+                  </div>
+                  <div className="wish-option-content">
+                    <p className="wish-option-text">{wishText}</p>
+                  </div>
+                </label>
+              )
+            })}
           </div>
 
           {/* Footer Submit */}
@@ -544,7 +529,7 @@ const ReservationForm: FC = () => {
               {isSubmitting ? (
                 <span className="btn-loading">
                   <span className="spinner" />
-                  <span>{t('submittingRsvp') || 'Envoi en cours vers Google Sheet & Email...'}</span>
+                  <span>{t('submittingRsvp') || 'Envoi en cours...'}</span>
                 </span>
               ) : (
                 <>
@@ -558,24 +543,8 @@ const ReservationForm: FC = () => {
 
             <div className="form-security-badge">
               <span className="security-icon">🔒</span>
-              <span>
-                {locale === 'en'
-                  ? 'Your response is directly transmitted via secure SMTP email & stored in Google Sheet'
-                  : 'Votre réponse est directement transmise par email SMTP sécurisé & enregistrée sur Google Sheet'}
-              </span>
+              <span>{t('securityBadge') || (locale === 'en' ? 'Secure' : 'Sécurisé')}</span>
             </div>
-
-            <p className="reservation-form__fallback">
-              {t('googleFormHelp') || 'Une question ou préférence particulière ?'}{' '}
-              <a
-                href={GOOGLE_FORM_VIEW_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="reservation-form__google-link"
-              >
-                {t('openGoogleFormLink') || 'Accéder au formulaire Google Forms'} ↗
-              </a>
-            </p>
           </div>
         </form>
       )}
