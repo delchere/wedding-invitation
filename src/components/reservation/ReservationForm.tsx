@@ -7,7 +7,7 @@ const GOOGLE_FORM_ACTION_URL =
 const GOOGLE_FORM_VIEW_URL =
   'https://docs.google.com/forms/d/e/1FAIpQLSeqdrEvyJqORdq3EqIWna6fEGRfB3mDN2ag-TPrvM8fASZSnQ/viewform'
 
-const STORAGE_KEY = 'wedding_rsvp_submission_v1'
+const STORAGE_KEY = 'wedding_rsvp_submission_v2'
 
 type AttendanceOption = 'yes' | 'no' | 'maybe'
 
@@ -17,8 +17,28 @@ const GOOGLE_ATTENDANCE_MAP: Record<AttendanceOption, string> = {
   maybe: 'Peut-être / Maybe',
 }
 
+const QUICK_SUGGESTIONS_FR = [
+  '🥗 Végétarien',
+  '🌾 Sans gluten',
+  '🥩 Halal',
+  '🚫 Sans porc',
+  '✨ Aucune restriction',
+  '🎵 Demande de chanson',
+  '❤️ Tous nos vœux de bonheur !',
+]
+
+const QUICK_SUGGESTIONS_EN = [
+  '🥗 Vegetarian',
+  '🌾 Gluten free',
+  '🥩 Halal',
+  '🚫 Pork-free',
+  '✨ No restrictions',
+  '🎵 Song request',
+  '❤️ Congratulations to the couple!',
+]
+
 const ReservationForm: FC = () => {
-  const { t } = useLocale()
+  const { t, locale } = useLocale()
 
   const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('')
@@ -28,19 +48,28 @@ const ReservationForm: FC = () => {
   const [guestName, setGuestName] = useState('')
   const [dietaryOrMessage, setDietaryOrMessage] = useState('')
 
+  const [emailValid, setEmailValid] = useState<boolean | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  const [submittedName, setSubmittedName] = useState('')
+  const [submissionStep, setSubmissionStep] = useState<'idle' | 'sending' | 'done'>('idle')
+  const [submittedData, setSubmittedData] = useState<{
+    fullName: string
+    attendance: AttendanceOption
+    hasPlusOne: boolean
+    guestName?: string
+  } | null>(null)
 
-  // Check saved submission from localStorage
+  // Quick suggestion chips based on active locale
+  const quickSuggestions = locale === 'en' ? QUICK_SUGGESTIONS_EN : QUICK_SUGGESTIONS_FR
+
+  // Load previous submission from localStorage if present
   useEffect(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY)
       if (saved) {
-        const data = JSON.parse(saved)
-        if (data && data.fullName) {
-          setSubmittedName(data.fullName)
-          setIsSubmitted(true)
+        const parsed = JSON.parse(saved)
+        if (parsed && parsed.fullName) {
+          setSubmittedData(parsed)
+          setSubmissionStep('done')
         }
       }
     } catch {
@@ -48,13 +77,83 @@ const ReservationForm: FC = () => {
     }
   }, [])
 
+  // Email format validation
+  const validateEmail = (val: string): boolean => {
+    if (!val) {
+      setEmailValid(null)
+      return false
+    }
+    const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim())
+    setEmailValid(isValid)
+    return isValid
+  }
+
+  // Toggle quick tag in dietary/message textarea
+  const handleToggleTag = (tag: string): void => {
+    setDietaryOrMessage((prev) => {
+      if (prev.includes(tag)) {
+        return prev
+          .replace(tag, '')
+          .replace(/,\s*,/g, ',')
+          .replace(/^\s*,\s*/, '')
+          .replace(/\s*,\s*$/, '')
+          .trim()
+      } else {
+        return prev ? `${prev}, ${tag}` : tag
+      }
+    })
+  }
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
-    if (!fullName.trim()) return
+    if (!fullName.trim() || !email.trim()) return
 
     setIsSubmitting(true)
+    setSubmissionStep('sending')
 
-    // Build compound name if plus-one or email included
+    const attendanceValue = GOOGLE_ATTENDANCE_MAP[attendance]
+    const payload = {
+      fullName: fullName.trim(),
+      email: email.trim(),
+      phone: phone.trim(),
+      attendance,
+      hasPlusOne,
+      guestName: hasPlusOne ? guestName.trim() : '',
+      dietaryOrMessage: dietaryOrMessage.trim(),
+      timestamp: new Date().toISOString(),
+    }
+
+    // 1. Send via Next.js Backend API (SMTP Nodemailer + Google Sheets Webhook)
+    try {
+      const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+      await fetch(`${basePath}/api/rsvp/`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+    } catch (apiErr) {
+      console.warn('API /api/rsvp execution note:', apiErr)
+    }
+
+    // 2. Direct Google Sheets Webhook (Client-side fallback for static export / GitHub Pages)
+    const directSheetWebhook = process.env.NEXT_PUBLIC_GOOGLE_SHEET_WEBHOOK_URL
+    if (directSheetWebhook) {
+      try {
+        await fetch(directSheetWebhook, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            ...payload,
+            attendanceLabel: attendanceValue,
+          }),
+        })
+      } catch (sheetErr) {
+        console.warn('Direct Google Sheet Webhook note:', sheetErr)
+      }
+    }
+
+    // 3. Native Google Forms submission (Records row automatically in linked Google Sheet)
     let fullSubmissionName = fullName.trim()
     if (hasPlusOne && guestName.trim()) {
       fullSubmissionName += ` (+1: ${guestName.trim()})`
@@ -69,10 +168,7 @@ const ReservationForm: FC = () => {
       fullSubmissionName += ` [Note: ${dietaryOrMessage.trim()}]`
     }
 
-    const attendanceValue = GOOGLE_ATTENDANCE_MAP[attendance]
-
     try {
-      // 1. Submit via FormData POST with mode: no-cors
       const formData = new FormData()
       formData.append('entry.137059600', fullSubmissionName)
       formData.append('entry.334886026', attendanceValue)
@@ -82,84 +178,42 @@ const ReservationForm: FC = () => {
         mode: 'no-cors',
         body: formData,
       })
-    } catch (err) {
-      console.warn('Form fetch submitted with fallback', err)
-    }
-
-    // 2. Fallback invisible iframe form submission to ensure 100% Google Forms capture
-    try {
-      const iframeName = 'hidden_rsvp_iframe_' + Date.now()
-      const iframe = document.createElement('iframe')
-      iframe.name = iframeName
-      iframe.style.display = 'none'
-      document.body.appendChild(iframe)
-
-      const form = document.createElement('form')
-      form.target = iframeName
-      form.action = GOOGLE_FORM_ACTION_URL
-      form.method = 'POST'
-      form.style.display = 'none'
-
-      const inputName = document.createElement('input')
-      inputName.type = 'hidden'
-      inputName.name = 'entry.137059600'
-      inputName.value = fullSubmissionName
-      form.appendChild(inputName)
-
-      const inputAttend = document.createElement('input')
-      inputAttend.type = 'hidden'
-      inputAttend.name = 'entry.334886026'
-      inputAttend.value = attendanceValue
-      form.appendChild(inputAttend)
-
-      document.body.appendChild(form)
-      form.submit()
-
-      setTimeout(() => {
-        try {
-          document.body.removeChild(form)
-          document.body.removeChild(iframe)
-        } catch {
-          // ignore
-        }
-      }, 3000)
     } catch {
-      // fallback handled
+      // Ignored for no-cors
     }
 
-    // Save locally
+    // 4. Save locally so user sees confirmation card
+    const savedState = {
+      fullName: fullName.trim(),
+      attendance,
+      hasPlusOne,
+      guestName: guestName.trim(),
+      email: email.trim(),
+      phone: phone.trim(),
+      dietaryOrMessage: dietaryOrMessage.trim(),
+      date: new Date().toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US'),
+    }
+
     try {
-      localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify({
-          fullName,
-          attendance,
-          email,
-          phone,
-          hasPlusOne,
-          guestName,
-          dietaryOrMessage,
-          date: new Date().toISOString(),
-        })
-      )
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(savedState))
     } catch {
-      // Ignore storage error
+      // storage unavailable
     }
 
-    setSubmittedName(fullName)
+    setSubmittedData(savedState)
     setIsSubmitting(false)
-    setIsSubmitted(true)
+    setSubmissionStep('done')
   }
 
   const handleEdit = (): void => {
-    setIsSubmitted(false)
+    setSubmissionStep('idle')
   }
 
   const calendarUrl = buildGoogleCalendarUrl()
 
   return (
     <div className="reservation-card-container">
-      {isSubmitted ? (
+      {submissionStep === 'done' && submittedData ? (
         <div className="reservation-success-card" role="status" aria-live="polite">
           <div className="reservation-success-card__badge" aria-hidden="true">
             ✦
@@ -168,17 +222,41 @@ const ReservationForm: FC = () => {
             {t('rsvpSuccessTitle') || 'Merci infiniment !'}
           </h3>
           <p className="reservation-success-card__name">
-            Cher(e) <strong>{submittedName}</strong>,
+            Cher(e) <strong>{submittedData.fullName}</strong>,
           </p>
+
+          <div className="reservation-success-card__summary">
+            <div className="summary-item">
+              <span className="summary-label">
+                {locale === 'en' ? 'Attendance Status' : 'Votre présence'} :
+              </span>
+              <strong className={`summary-status status--${submittedData.attendance}`}>
+                {submittedData.attendance === 'yes'
+                  ? (locale === 'en' ? '✅ Confirmed (Attending)' : '✅ Confirmé (Présent)')
+                  : submittedData.attendance === 'maybe'
+                  ? (locale === 'en' ? '⏳ Maybe / Pending' : '⏳ En attente (Peut-être)')
+                  : (locale === 'en' ? '❌ Regretfully absent' : '❌ Absent(e)')}
+              </strong>
+            </div>
+            {submittedData.hasPlusOne && submittedData.guestName && (
+              <div className="summary-item">
+                <span className="summary-label">
+                  {locale === 'en' ? 'Guest (+1)' : 'Accompagnant (+1)'} :
+                </span>
+                <strong>{submittedData.guestName}</strong>
+              </div>
+            )}
+          </div>
+
           <p className="reservation-success-card__desc">
-            {attendance === 'yes'
+            {submittedData.attendance === 'yes'
               ? (t('rsvpSuccessYes') ||
-                'Votre présence a bien été confirmée. Nous sommes impatients de célébrer ce moment inoubliable avec vous !')
-              : attendance === 'maybe'
+                'Votre présence a bien été enregistrée et transmise par email et sur Google Sheet. Nous avons hâte de célébrer ce moment magique avec vous !')
+              : submittedData.attendance === 'maybe'
               ? (t('rsvpSuccessMaybe') ||
-                'Votre réponse a bien été enregistrée. Nous espérons sincèrement que vous pourrez vous joindre à nous !')
+                'Votre réponse d’attente a bien été transmise. N’hésitez pas à revenir confirmer votre venue dès que votre calendrier sera fixé !')
               : (t('rsvpSuccessNo') ||
-                'Votre message a bien été transmis. Vous serez avec nous en pensée pour ce grand jour.')}
+                'Votre réponse a bien été transmise. Vous serez présent(e) dans nos cœurs pour cette journée unique.')}
           </p>
 
           <div className="reservation-success-card__actions">
@@ -186,7 +264,7 @@ const ReservationForm: FC = () => {
               href={calendarUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn--primary"
+              className="btn btn--primary btn--calendar"
             >
               <svg className="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
@@ -204,14 +282,24 @@ const ReservationForm: FC = () => {
         </div>
       ) : (
         <form className="reservation-form" onSubmit={handleSubmit} noValidate={false}>
+          {/* Header */}
           <div className="reservation-form__header">
             <span className="reservation-form__crest" aria-hidden="true">
-              D × I
+              ✦ D × I ✦
             </span>
+            <h3 className="reservation-form__title">
+              {locale === 'en' ? 'Guest Attendance Confirmation' : 'Confirmation de votre présence'}
+            </h3>
             <p className="reservation-form__instruction">
               {t('rsvpFormInstruction') ||
-                'Veuillez renseigner vos coordonnées ci-dessous pour confirmer votre présence.'}
+                'Veuillez renseigner vos coordonnées ci-dessous. Votre réservation sera directement envoyée aux mariés et enregistrée.'}
             </p>
+          </div>
+
+          {/* Step 1: Personal Coordinates */}
+          <div className="form-section-title">
+            <span className="form-section-number">1</span>
+            <span>{locale === 'en' ? 'Your Contact Details' : 'Vos coordonnées'}</span>
           </div>
 
           <div className="reservation-form__grid">
@@ -220,15 +308,19 @@ const ReservationForm: FC = () => {
               <label htmlFor="rsvp-name" className="reservation-label">
                 {t('fullNameLabel') || 'Nom & Prénom'} <span className="req">*</span>
               </label>
-              <input
-                id="rsvp-name"
-                type="text"
-                required
-                className="reservation-input"
-                placeholder={t('fullNamePlaceholder') || 'Ex. Delphine Dupont'}
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-              />
+              <div className="input-with-icon">
+                <input
+                  id="rsvp-name"
+                  type="text"
+                  required
+                  autoComplete="name"
+                  className={`reservation-input ${fullName.trim().length > 2 ? 'input--valid' : ''}`}
+                  placeholder={t('fullNamePlaceholder') || 'Ex. Delphine Dupont'}
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                />
+                {fullName.trim().length > 2 && <span className="input-check-icon">✓</span>}
+              </div>
             </div>
 
             {/* Email */}
@@ -236,19 +328,33 @@ const ReservationForm: FC = () => {
               <label htmlFor="rsvp-email" className="reservation-label">
                 {t('emailLabel') || 'Adresse Email'} <span className="req">*</span>
               </label>
-              <input
-                id="rsvp-email"
-                type="email"
-                required
-                className="reservation-input"
-                placeholder={t('emailPlaceholder') || 'exemple@email.com'}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+              <div className="input-with-icon">
+                <input
+                  id="rsvp-email"
+                  type="email"
+                  required
+                  inputMode="email"
+                  autoComplete="email"
+                  className={`reservation-input ${emailValid === true ? 'input--valid' : emailValid === false ? 'input--invalid' : ''}`}
+                  placeholder={t('emailPlaceholder') || 'exemple@email.com'}
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value)
+                    validateEmail(e.target.value)
+                  }}
+                  onBlur={(e) => validateEmail(e.target.value)}
+                />
+                {emailValid === true && <span className="input-check-icon">✓</span>}
+              </div>
+              {emailValid === false && (
+                <span className="field-hint error-hint">
+                  {locale === 'en' ? 'Please enter a valid email address' : 'Veuillez saisir un email valide'}
+                </span>
+              )}
             </div>
 
             {/* Phone */}
-            <div className="reservation-field">
+            <div className="reservation-field reservation-field--full">
               <label htmlFor="rsvp-phone" className="reservation-label">
                 {t('phoneLabel') || 'Téléphone / WhatsApp'}{' '}
                 <span className="opt">({t('optional') || 'facultatif'})</span>
@@ -256,144 +362,190 @@ const ReservationForm: FC = () => {
               <input
                 id="rsvp-phone"
                 type="tel"
+                inputMode="tel"
+                autoComplete="tel"
                 className="reservation-input"
-                placeholder={t('phonePlaceholder') || '+228 ... / +27 ...'}
+                placeholder={t('phonePlaceholder') || 'Ex. +228 92 00 00 00 / +27 65 00 00 00'}
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
               />
             </div>
+          </div>
 
-            {/* Attendance Choice */}
-            <div className="reservation-field reservation-field--full">
-              <span className="reservation-label">
-                {t('attendanceQuestion') || 'Serez-vous présent(e) parmi nous ?'}{' '}
-                <span className="req">*</span>
-              </span>
-              <div className="reservation-attendance-options">
-                <label
-                  className={`attendance-option ${attendance === 'yes' ? 'attendance-option--active' : ''}`}
-                >
-                  <input
-                    type="radio"
-                    name="attendance"
-                    value="yes"
-                    checked={attendance === 'yes'}
-                    onChange={() => setAttendance('yes')}
-                    className="visually-hidden"
-                  />
-                  <span className="attendance-option__indicator">✓</span>
-                  <span className="attendance-option__text">
-                    {t('attendingOptionYes') || 'Oui, je serai présent(e)'}
-                  </span>
-                </label>
+          {/* Step 2: Attendance */}
+          <div className="form-section-title" style={{ marginTop: '24px' }}>
+            <span className="form-section-number">2</span>
+            <span>{t('attendanceQuestion') || 'Serez-vous présent(e) parmi nous ?'}</span>
+            <span className="req">*</span>
+          </div>
 
-                <label
-                  className={`attendance-option ${attendance === 'no' ? 'attendance-option--active' : ''}`}
-                >
-                  <input
-                    type="radio"
-                    name="attendance"
-                    value="no"
-                    checked={attendance === 'no'}
-                    onChange={() => setAttendance('no')}
-                    className="visually-hidden"
-                  />
-                  <span className="attendance-option__indicator">✕</span>
-                  <span className="attendance-option__text">
-                    {t('attendingOptionNo') || 'Je ne pourrai pas venir'}
-                  </span>
-                </label>
-
-                <label
-                  className={`attendance-option ${attendance === 'maybe' ? 'attendance-option--active' : ''}`}
-                >
-                  <input
-                    type="radio"
-                    name="attendance"
-                    value="maybe"
-                    checked={attendance === 'maybe'}
-                    onChange={() => setAttendance('maybe')}
-                    className="visually-hidden"
-                  />
-                  <span className="attendance-option__indicator">✦</span>
-                  <span className="attendance-option__text">
-                    {t('attendingOptionMaybe') || 'Peut-être'}
-                  </span>
-                </label>
-              </div>
-            </div>
-
-            {/* Plus One Selector */}
-            {attendance !== 'no' && (
-              <div className="reservation-field reservation-field--full">
-                <div className="plus-one-toggle-row">
-                  <span className="reservation-label">
-                    {t('plusOneQuestion') || 'Venez-vous accompagné(e) ?'}
-                  </span>
-                  <div className="plus-one-chips">
-                    <button
-                      type="button"
-                      className={`chip ${!hasPlusOne ? 'chip--active' : ''}`}
-                      onClick={() => setHasPlusOne(false)}
-                    >
-                      {t('plusOneAlone') || 'Seul(e)'}
-                    </button>
-                    <button
-                      type="button"
-                      className={`chip ${hasPlusOne ? 'chip--active' : ''}`}
-                      onClick={() => setHasPlusOne(true)}
-                    >
-                      {t('plusOneWithGuest') || '+1 Invité(e)'}
-                    </button>
-                  </div>
-                </div>
-
-                {hasPlusOne && (
-                  <div className="plus-one-input-wrap">
-                    <label htmlFor="rsvp-guest-name" className="reservation-label">
-                      {t('guestNameLabel') || "Nom et prénom de l'accompagnant(e)"}
-                    </label>
-                    <input
-                      id="rsvp-guest-name"
-                      type="text"
-                      className="reservation-input"
-                      placeholder={t('guestNamePlaceholder') || 'Nom complet de votre invité(e)'}
-                      value={guestName}
-                      onChange={(e) => setGuestName(e.target.value)}
-                    />
-                  </div>
-                )}
-              </div>
-            )}
-
-            {/* Dietary or Wishes */}
-            <div className="reservation-field reservation-field--full">
-              <label htmlFor="rsvp-notes" className="reservation-label">
-                {t('dietaryOrMessageLabel') || 'Régime alimentaire, musique ou petit mot pour les mariés'}{' '}
-                <span className="opt">({t('optional') || 'facultatif'})</span>
-              </label>
-              <textarea
-                id="rsvp-notes"
-                rows={3}
-                className="reservation-textarea"
-                placeholder={
-                  t('dietaryOrMessagePlaceholder') ||
-                  'Allergies, régime particulier, chanson pour la soirée, ou vos vœux...'
-                }
-                value={dietaryOrMessage}
-                onChange={(e) => setDietaryOrMessage(e.target.value)}
+          <div className="reservation-attendance-options">
+            <label
+              className={`attendance-option ${attendance === 'yes' ? 'attendance-option--active' : ''}`}
+            >
+              <input
+                type="radio"
+                name="attendance"
+                value="yes"
+                checked={attendance === 'yes'}
+                onChange={() => setAttendance('yes')}
+                className="visually-hidden"
               />
+              <span className="attendance-option__indicator">✓</span>
+              <div className="attendance-option__details">
+                <span className="attendance-option__text">
+                  {t('attendingOptionYes') || 'Oui, je serai présent(e)'}
+                </span>
+                <span className="attendance-option__subtext">
+                  {locale === 'en' ? 'Célébrons ensemble !' : 'Avec grand bonheur !'}
+                </span>
+              </div>
+            </label>
+
+            <label
+              className={`attendance-option ${attendance === 'no' ? 'attendance-option--active' : ''}`}
+            >
+              <input
+                type="radio"
+                name="attendance"
+                value="no"
+                checked={attendance === 'no'}
+                onChange={() => setAttendance('no')}
+                className="visually-hidden"
+              />
+              <span className="attendance-option__indicator">✕</span>
+              <div className="attendance-option__details">
+                <span className="attendance-option__text">
+                  {t('attendingOptionNo') || 'Je ne pourrai pas venir'}
+                </span>
+                <span className="attendance-option__subtext">
+                  {locale === 'en' ? 'En pensée avec vous' : 'Avec vous en pensée'}
+                </span>
+              </div>
+            </label>
+
+            <label
+              className={`attendance-option ${attendance === 'maybe' ? 'attendance-option--active' : ''}`}
+            >
+              <input
+                type="radio"
+                name="attendance"
+                value="maybe"
+                checked={attendance === 'maybe'}
+                onChange={() => setAttendance('maybe')}
+                className="visually-hidden"
+              />
+              <span className="attendance-option__indicator">✦</span>
+              <div className="attendance-option__details">
+                <span className="attendance-option__text">
+                  {t('attendingOptionMaybe') || 'Peut-être'}
+                </span>
+                <span className="attendance-option__subtext">
+                  {locale === 'en' ? 'En attente de confirmation' : 'À confirmer d’ici fin octobre'}
+                </span>
+              </div>
+            </label>
+          </div>
+
+          {/* Step 3: Plus One Guest */}
+          {attendance !== 'no' && (
+            <div className="plus-one-section">
+              <div className="form-section-title" style={{ marginTop: '24px' }}>
+                <span className="form-section-number">3</span>
+                <span>{t('plusOneQuestion') || 'Venez-vous accompagné(e) ?'}</span>
+              </div>
+
+              <div className="plus-one-chips-container">
+                <button
+                  type="button"
+                  className={`chip-button ${!hasPlusOne ? 'chip-button--active' : ''}`}
+                  onClick={() => setHasPlusOne(false)}
+                >
+                  <span className="chip-icon">👤</span>
+                  <span>{t('plusOneAlone') || 'Je viens seul(e)'}</span>
+                </button>
+
+                <button
+                  type="button"
+                  className={`chip-button ${hasPlusOne ? 'chip-button--active' : ''}`}
+                  onClick={() => setHasPlusOne(true)}
+                >
+                  <span className="chip-icon">👥</span>
+                  <span>{t('plusOneWithGuest') || '+1 Invité(e)'}</span>
+                </button>
+              </div>
+
+              {hasPlusOne && (
+                <div className="plus-one-input-wrap">
+                  <label htmlFor="rsvp-guest-name" className="reservation-label">
+                    {t('guestNameLabel') || "Nom et prénom de l'accompagnant(e)"} <span className="req">*</span>
+                  </label>
+                  <input
+                    id="rsvp-guest-name"
+                    type="text"
+                    required={hasPlusOne}
+                    className="reservation-input"
+                    placeholder={t('guestNamePlaceholder') || 'Nom complet de votre invité(e)'}
+                    value={guestName}
+                    onChange={(e) => setGuestName(e.target.value)}
+                  />
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Step 4: Quick Tags & Message */}
+          <div className="form-section-title" style={{ marginTop: '24px' }}>
+            <span className="form-section-number">{attendance === 'no' ? '3' : '4'}</span>
+            <span>
+              {t('dietaryOrMessageLabel') || 'Régime alimentaire, musique ou petit mot'}
+            </span>
+          </div>
+
+          <div className="quick-suggestions-wrap">
+            <span className="quick-suggestions-label">
+              {locale === 'en' ? '💡 Click to add quickly :' : '💡 Cliquez pour ajouter rapidement :'}
+            </span>
+            <div className="quick-suggestions-chips">
+              {quickSuggestions.map((tag) => (
+                <button
+                  key={tag}
+                  type="button"
+                  className={`quick-tag-chip ${dietaryOrMessage.includes(tag) ? 'quick-tag-chip--active' : ''}`}
+                  onClick={() => handleToggleTag(tag)}
+                >
+                  {tag}
+                </button>
+              ))}
             </div>
           </div>
 
+          <div className="reservation-field reservation-field--full" style={{ marginTop: '10px' }}>
+            <textarea
+              id="rsvp-notes"
+              rows={3}
+              className="reservation-textarea"
+              placeholder={
+                t('dietaryOrMessagePlaceholder') ||
+                'Allergies, régime particulier, chanson pour la soirée, ou vos vœux aux mariés...'
+              }
+              value={dietaryOrMessage}
+              onChange={(e) => setDietaryOrMessage(e.target.value)}
+            />
+          </div>
+
+          {/* Footer Submit */}
           <div className="reservation-form__footer">
             <button
               type="submit"
-              disabled={isSubmitting}
+              disabled={isSubmitting || !fullName.trim() || !email.trim()}
               className="btn btn--primary btn--large reservation-submit-btn"
             >
               {isSubmitting ? (
-                <span>{t('submittingRsvp') || 'Envoi en cours...'}</span>
+                <span className="btn-loading">
+                  <span className="spinner" />
+                  <span>{t('submittingRsvp') || 'Envoi en cours vers Google Sheet & Email...'}</span>
+                </span>
               ) : (
                 <>
                   <span>{t('submitRsvpButton') || 'Confirmer ma réservation'}</span>
@@ -403,6 +555,15 @@ const ReservationForm: FC = () => {
                 </>
               )}
             </button>
+
+            <div className="form-security-badge">
+              <span className="security-icon">🔒</span>
+              <span>
+                {locale === 'en'
+                  ? 'Your response is directly transmitted via secure SMTP email & stored in Google Sheet'
+                  : 'Votre réponse est directement transmise par email SMTP sécurisé & enregistrée sur Google Sheet'}
+              </span>
+            </div>
 
             <p className="reservation-form__fallback">
               {t('googleFormHelp') || 'Une question ou préférence particulière ?'}{' '}
