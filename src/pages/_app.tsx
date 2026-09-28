@@ -15,6 +15,40 @@ import { LocaleProvider } from '@/context/locale-context'
 // eslint-disable-next-line @typescript-eslint/ban-types
 type CustomAppProps = {}
 
+if (typeof window !== 'undefined') {
+  window.addEventListener(
+    'error',
+    (event: ErrorEvent) => {
+      const isExtension =
+        event.filename?.includes('chrome-extension://') ||
+        event.error?.stack?.includes('chrome-extension://') ||
+        event.message?.includes('chrome: call method')
+      if (isExtension) {
+        event.stopImmediatePropagation()
+      }
+    },
+    true
+  )
+
+  window.addEventListener(
+    'unhandledrejection',
+    (event: PromiseRejectionEvent) => {
+      const reason = event.reason
+      const msg = reason?.message || String(reason || '')
+      const stack = reason?.stack || ''
+      const isExtension =
+        msg.includes('chrome-extension://') ||
+        msg.includes('chrome: call method') ||
+        stack.includes('chrome-extension://')
+      if (isExtension) {
+        event.stopImmediatePropagation()
+        event.preventDefault()
+      }
+    },
+    true
+  )
+}
+
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export function MyCustomApp({ Component, pageProps }: AppProps & CustomAppProps) {
   return (

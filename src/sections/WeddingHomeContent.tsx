@@ -3,6 +3,7 @@ import SiteFooter from '@/components/SiteFooter'
 import SiteNav from '@/components/SiteNav'
 import CountdownSection from '@/sections/CountdownSection'
 import DressCodeSection from '@/sections/DressCodeSection'
+import InvitationSection from '@/sections/InvitationSection'
 import ProgramSection from '@/sections/ProgramSection'
 import ReserveSection from '@/sections/ReserveSection'
 import StorySection from '@/sections/StorySection'
@@ -14,6 +15,7 @@ const WeddingHomeContent: React.FC = () => {
       <SiteNav />
       <main>
         <WeddingHero />
+        <InvitationSection />
         <StorySection />
         <CountdownSection />
         <ProgramSection />

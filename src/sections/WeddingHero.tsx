@@ -2,7 +2,6 @@ import React, { FC } from 'react'
 import weddingConfig from '@/config/wedding.config'
 import ScrollReveal from '@/components/ScrollReveal'
 import { useLocale } from '@/context/locale-context'
-import { getRsvpUrl } from '@/utils/rsvp'
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
 
@@ -32,14 +31,14 @@ const WeddingHero: FC = () => {
           </h1>
           <p className="hero__date">{t('heroDate')}</p>
           <p className="hero__location">{t('ceremonyLocation')}</p>
-          <a
-            href={getRsvpUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hero__cta btn btn--primary"
-          >
-            {t('reserveCta')}
-          </a>
+          <div className="hero__cta-group">
+            <a href="#reserve" className="hero__cta btn btn--primary">
+              {t('reserveCta')}
+            </a>
+            <a href="#invitation" className="hero__cta btn btn--outline">
+              {t('viewInvitationCta')}
+            </a>
+          </div>
         </ScrollReveal>
       </div>
 
