@@ -258,6 +258,7 @@ a {
   margin: 0 0 12px;
   letter-spacing: 0.04em;
   text-shadow: 0 2px 18px rgba(0, 0, 0, 0.25);
+  text-transform: none;
 }
 
 .hero__names {
@@ -390,9 +391,43 @@ a {
   font-size: clamp(1.08rem, 3.2vw, 1.2rem);
   line-height: 1.85;
   margin: 0 0 14px;
-  white-space: pre-line;
+  white-space: normal;
   color: var(--inv-ink);
   font-weight: 500;
+}
+
+.story__paragraph-block {
+  display: block;
+}
+
+.story__paragraph-block + .story__paragraph-block {
+  margin-top: 14px;
+}
+
+.story__lead-phrase {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.48em;
+  font-weight: 700;
+  color: var(--inv-gold-deep);
+  line-height: 1;
+  margin-right: 0.28rem;
+  display: inline;
+  vertical-align: -0.04em;
+  text-shadow: 0 1px 2px rgba(196, 154, 82, 0.15);
+}
+
+.section__lead .story__lead-phrase {
+  font-size: 1.55em;
+  margin-right: 0.32rem;
+}
+
+.story__keyword {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--inv-gold-deep);
+  letter-spacing: 0.015em;
+  padding: 0 1px;
 }
 
 .story__read-more {
@@ -1858,6 +1893,71 @@ a {
 .wish-option-card--active .wish-option-text {
   color: #1a2621;
   font-weight: 600;
+}
+
+.wish-option-card--custom {
+  align-items: flex-start;
+}
+
+.wish-option-text--custom-title {
+  font-weight: 600;
+}
+
+.custom-wish-wrapper {
+  margin-top: 12px;
+  width: 100%;
+  animation: fadeIn 0.25s ease;
+}
+
+.custom-wish-textarea {
+  width: 100%;
+  border-radius: 10px;
+  border: 1.5px solid rgba(196, 154, 82, 0.45);
+  background: #ffffff;
+  padding: 12px 14px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--inv-ink);
+  resize: vertical;
+  min-height: 84px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.custom-wish-textarea:focus {
+  outline: none;
+  border-color: var(--inv-gold-deep);
+  box-shadow: 0 0 0 3px rgba(196, 154, 82, 0.2);
+}
+
+.custom-wish-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6px;
+  padding: 0 2px;
+  font-size: 0.8rem;
+  color: var(--inv-sage);
+}
+
+.custom-wish-hint {
+  font-family: "DM Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+}
+
+.custom-wish-counter {
+  font-family: "DM Mono", monospace;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--inv-gold-deep);
+}
+
+.custom-wish-counter.counter--limit {
+  color: #c62828;
+  font-weight: 700;
 }
 
 /* Reservation Success Card */

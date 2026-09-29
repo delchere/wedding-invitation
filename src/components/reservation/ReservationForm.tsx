@@ -13,6 +13,7 @@ const GOOGLE_ATTENDANCE_MAP: Record<AttendanceOption, string> = {
 }
 
 const WISH_KEYS = ['wish1', 'wish2', 'wish3', 'wish4', 'wish5'] as const
+const CUSTOM_WISH_MAX_CHARS = 250
 
 const triggerJoyfulConfetti = async (): Promise<void> => {
   try {
@@ -65,6 +66,7 @@ const ReservationForm: FC = () => {
   const [hasPlusOne, setHasPlusOne] = useState(false)
   const [guestName, setGuestName] = useState('')
   const [selectedWishKey, setSelectedWishKey] = useState<string>('wish1')
+  const [customWish, setCustomWish] = useState<string>('')
 
   const [emailValid, setEmailValid] = useState<boolean | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -86,6 +88,15 @@ const ReservationForm: FC = () => {
         if (parsed && parsed.fullName) {
           setSubmittedData(parsed)
           setSubmissionStep('done')
+          if (parsed.wish) {
+            const isPredefined = (WISH_KEYS as readonly string[]).includes(parsed.wishKey)
+            if (!isPredefined && parsed.wish) {
+              setSelectedWishKey('custom')
+              setCustomWish(parsed.wish)
+            } else if (parsed.wishKey) {
+              setSelectedWishKey(parsed.wishKey)
+            }
+          }
         }
       }
     } catch {
@@ -107,12 +118,16 @@ const ReservationForm: FC = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
     if (!fullName.trim() || !email.trim()) return
+    if (selectedWishKey === 'custom' && !customWish.trim()) return
 
     setIsSubmitting(true)
     setSubmissionStep('sending')
 
     const attendanceValue = GOOGLE_ATTENDANCE_MAP[attendance]
-    const chosenWishText = t(selectedWishKey) || ''
+    const chosenWishText =
+      selectedWishKey === 'custom'
+        ? (customWish.trim() || (locale === 'en' ? 'Best wishes to Delchere & Ihechukwu!' : 'Tous nos vœux de bonheur à Delchere & Ihechukwu !'))
+        : (t(selectedWishKey) || '')
 
     const payload = {
       fullName: fullName.trim(),
@@ -164,6 +179,7 @@ const ReservationForm: FC = () => {
       email: email.trim(),
       phone: phone.trim(),
       wish: chosenWishText,
+      wishKey: selectedWishKey,
       date: new Date().toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US'),
     }
 
@@ -517,13 +533,77 @@ const ReservationForm: FC = () => {
                 </label>
               )
             })}
+
+            {/* Custom Personalized Wish Option */}
+            <label
+              className={`wish-option-card wish-option-card--custom ${selectedWishKey === 'custom' ? 'wish-option-card--active' : ''}`}
+            >
+              <input
+                type="radio"
+                name="wedding-wish"
+                value="custom"
+                checked={selectedWishKey === 'custom'}
+                onChange={() => setSelectedWishKey('custom')}
+                className="visually-hidden"
+              />
+              <div className="wish-option-indicator">
+                <span className="wish-option-check">{selectedWishKey === 'custom' ? '●' : '○'}</span>
+                <span className="wish-option-num">✍️</span>
+              </div>
+              <div className="wish-option-content">
+                <p className="wish-option-text wish-option-text--custom-title">
+                  {t('wishCustom') || (locale === 'en' ? '✍️ Personalized wish (write your own message)' : '✍️ Vœu personnalisé (rédigez votre propre message)')}
+                </p>
+
+                {selectedWishKey === 'custom' && (
+                  <div
+                    className="custom-wish-wrapper"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <textarea
+                      id="rsvp-custom-wish"
+                      className="custom-wish-textarea"
+                      rows={3}
+                      maxLength={CUSTOM_WISH_MAX_CHARS}
+                      placeholder={
+                        t('customWishPlaceholder') ||
+                        (locale === 'en'
+                          ? 'Write your warm wishes or personal note for Delchere & Ihechukwu...'
+                          : 'Écrivez vos vœux ou votre mot personnalisé pour Delchere & Ihechukwu...')
+                      }
+                      value={customWish}
+                      onChange={(e) => setCustomWish(e.target.value)}
+                      required={selectedWishKey === 'custom'}
+                      autoFocus
+                    />
+                    <div className="custom-wish-footer">
+                      <span className="custom-wish-hint">
+                        {t('customWishLimit') || (locale === 'en' ? 'Limited to 250 characters' : 'Limité à 250 caractères')}
+                      </span>
+                      <span
+                        className={`custom-wish-counter ${customWish.length >= CUSTOM_WISH_MAX_CHARS ? 'counter--limit' : ''}`}
+                        aria-live="polite"
+                      >
+                        {customWish.length} / {CUSTOM_WISH_MAX_CHARS}{' '}
+                        {t('customWishCounter') || (locale === 'en' ? 'characters' : 'caractères')}
+                      </span>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </label>
           </div>
 
           {/* Footer Submit */}
           <div className="reservation-form__footer">
             <button
               type="submit"
-              disabled={isSubmitting || !fullName.trim() || !email.trim()}
+              disabled={
+                isSubmitting ||
+                !fullName.trim() ||
+                !email.trim() ||
+                (selectedWishKey === 'custom' && !customWish.trim())
+              }
               className="btn btn--primary btn--large reservation-submit-btn"
             >
               {isSubmitting ? (
