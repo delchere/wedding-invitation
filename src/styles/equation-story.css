@@ -128,7 +128,7 @@
   font-size: clamp(0.58rem, 2vw, 0.65rem);
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--inv-champagne, #c9a66b);
+  color: #000000;
   margin: 0 0 16px;
 }
 
@@ -140,6 +140,11 @@
   margin: 0 0 14px;
   white-space: pre-line;
   max-width: 38rem;
+  text-align: justify;
+  text-justify: inter-word;
+  text-align-last: left;
+  hyphens: auto;
+  -webkit-hyphens: auto;
 }
 
 .equation-story__paragraph:last-child {
