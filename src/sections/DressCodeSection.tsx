@@ -18,6 +18,32 @@ const SWATCHES = [
   { className: 'dress-code-swatch--sage', labelKey: 'dressColorSage' },
 ] as const
 
+const COLOR_PREFIX_REGEX = /^(\*{0,2}(?:Ivoire|Or Champagne|Vert Sauge|Ivory|Champagne Gold|Sage Green)\s*:\*{0,2})(.*)$/is
+
+const renderDressText = (text: string): React.ReactNode => {
+  const paragraphs = text.split('\n\n').filter((p) => p.trim().length > 0)
+
+  return paragraphs.map((para, idx) => {
+    const trimmed = para.trim()
+    const match = trimmed.match(COLOR_PREFIX_REGEX)
+    if (match) {
+      const label = match[1].replace(/\*\*/g, '')
+      return (
+        <p key={idx} className="dress-code-details__paragraph">
+          <strong className="dress-code-details__label">{label}</strong>
+          {match[2]}
+        </p>
+      )
+    }
+
+    return (
+      <p key={idx} className="dress-code-details__paragraph">
+        {trimmed}
+      </p>
+    )
+  })
+}
+
 const DressCodeSection: FC = () => {
   const { t } = useLocale()
 
@@ -58,7 +84,7 @@ const DressCodeSection: FC = () => {
           </div>
 
           <div className="dress-code-details">
-            <p className="dress-code-details__text">{t('dressText')}</p>
+            <div className="dress-code-details__text">{renderDressText(t('dressText'))}</div>
           </div>
         </ScrollReveal>
       </div>

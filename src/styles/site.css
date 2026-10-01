@@ -379,12 +379,6 @@ a {
   max-width: 100%;
 }
 
-.section--story strong,
-.section--story b,
-.section--story em {
-  color: #000000;
-}
-
 .story__body {
   margin-top: 8px;
 }
@@ -398,7 +392,7 @@ a {
   font-size: 0.58rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #000000;
+  color: var(--inv-gold-deep);
   margin: 0 0 12px;
 }
 
@@ -430,29 +424,30 @@ a {
 }
 
 .story__lead-phrase {
-  font-family: "Dancing Script", cursive;
-  font-size: 1.48em;
-  font-weight: 700;
-  color: #000000;
-  line-height: 1;
-  margin-right: 0.28rem;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  color: inherit;
+  line-height: inherit;
+  margin: 0;
   display: inline;
-  vertical-align: -0.04em;
+  vertical-align: baseline;
   text-shadow: none;
 }
 
 .section__lead .story__lead-phrase {
-  font-size: 1.55em;
-  margin-right: 0.32rem;
+  font-size: inherit;
+  margin-right: 0;
 }
 
 .story__keyword {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-weight: 700;
-  font-style: italic;
-  color: #000000;
-  letter-spacing: 0.015em;
-  padding: 0 1px;
+  font-family: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  padding: 0;
 }
 
 .story__read-more {

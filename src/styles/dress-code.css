@@ -183,8 +183,23 @@
   line-height: 1.8;
   color: var(--inv-ink, #1a2621);
   margin: 0;
-  white-space: pre-line;
   font-weight: 500;
+}
+
+.dress-code-details__paragraph {
+  margin: 0 0 16px;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.dress-code-details__paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.dress-code-details__label,
+.dress-code-details strong {
+  font-weight: 700;
+  color: #000000;
 }
 
 @media (min-width: 760px) {

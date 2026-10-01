@@ -161,7 +161,7 @@ const InvitationSection: FC = () => {
                     <span className="invitation-card-back__corner br" />
 
                     <div className="invitation-card-back__monogram">D × I</div>
-                    <p className="invitation-card-back__script">{t('heroTitle') || 'La thèse de l’amour'}</p>
+                    <p className="invitation-card-back__script">{t('heroTitle') || 'Thèse de l’amour'}</p>
                     <div className="invitation-card-back__line" />
 
                     <p className="invitation-card-back__families">

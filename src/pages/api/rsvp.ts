@@ -154,7 +154,7 @@ export default async function handler(
           <div style="font-family: 'Georgia', serif; max-width: 600px; margin: 0 auto; background: #ffffff; border: 1px solid #c49a52; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
             <div style="background: #3f5248; color: #f7f2e9; padding: 32px 24px; text-align: center;">
               <p style="font-family: monospace; letter-spacing: 4px; font-size: 12px; margin: 0; color: #c49a52;">✦ DELCHERE & IHECHUKWU ✦</p>
-              <h1 style="margin: 12px 0 6px; font-size: 26px; font-weight: normal;">La thèse de l'amour</h1>
+              <h1 style="margin: 12px 0 6px; font-size: 26px; font-weight: normal;">Thèse de l'amour</h1>
               <p style="margin: 0; font-size: 14px; opacity: 0.9;">Confirmation de votre réponse</p>
             </div>
             <div style="padding: 30px 24px; color: #1a2621; line-height: 1.6;">
