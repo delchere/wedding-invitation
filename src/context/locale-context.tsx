@@ -52,25 +52,25 @@ const translations: Record<Locale, Record<string, string>> = {
     storyReadMore: 'Lire la suite',
     storyReadLess: 'Replier',
     storyIntro:
-      'Parfois, la vie a une drôle de manière de faire se rencontrer deux personnes. On croit simplement commencer un nouveau chapitre, pour ne réaliser que bien plus tard que l’on venait en réalité de rencontrer quelqu’un qui allait changer toute l’histoire.',
+      'Parfois, la vie a une drôle de façon de rapprocher deux êtres. On pense simplement entamer un nouveau chapitre, puis on réalise plus tard que l’on venait de croiser la personne qui allait changer toute notre histoire.',
     storyChapter01:
-      'En 2022, nos chemins se sont croisés à AIMS Cameroon, au cœur de la recherche, de la science et des idées. À l’époque, rien ne laissait vraiment présager que nous étions au début de quelque chose de bien plus grand. Nous nous sommes rencontrés comme collègues et nous parlions de travail, de recherche et de projets. Des choses très sérieuses. Du moins, c’est ce que nous pensions.',
+      'En 2022, nos chemins se sont croisés à AIMS Cameroun, au milieu de la recherche, des sciences et des idées, sans qu’aucun signe ne laisse deviner que nous étions au tout début d’une grande aventure. Nous nous sommes rencontrés et nous parlions de travail, de recherche, de projets. Des sujets très sérieux. Du moins, c’est ce que nous croyions.',
     storyChapter02:
-      'Après cette étape à AIMS, les conversations ont continué. Puis elles sont devenues plus longues. Les appels, plus fréquents. Et, d’une certaine manière, les conversations qui commençaient autrefois par « Comment avance la recherche ? » se sont mises à glisser vers tout le reste : la vie, la famille, les rêves, la foi, les ambitions et toutes ces petites choses qui font de nous ce que nous sommes.',
-    storyChapter03: `Quelque part en chemin, quelque chose a changé. Le respect est devenu confiance, la confiance est devenue amitié, et l’amitié s’est doucement transformée en quelque chose de plus profond. Puis est venue cette question qu’aucun de nous ne pouvait vraiment ignorer : « Attends… est-ce que tout cela ne serait pas en train de devenir quelque chose de plus ? »`,
+      'Après cette étape à AIMS, nous avons continué à échanger. Puis, les conversations sont devenues plus longues. Les appels sont devenus plus fréquents. Et, d’une manière ou d’une autre, les conversations qui commençaient autrefois par « Comment avance la recherche ? » ont commencé à s’étendre à tout le reste : la vie, la famille, les rêves, la foi, les ambitions et toutes ces petites choses qui font de nous ce que nous sommes.',
+    storyChapter03: `Quelque part en chemin, quelque chose a changé. Le respect est devenu confiance, la confiance est devenue amitié, et l’amitié s’est transformée en quelque chose de plus profond. Puis est venue cette question que ni l’un ni l’autre ne pouvait vraiment continuer à éviter : « Attends… est-ce que tout cela est en train de devenir quelque chose de plus ? »`,
     storyChapter04a:
-      'Il y avait, bien sûr, cette petite question de la distance. Des parcours différents. Des cultures différentes. Et toutes les raisons pratiques pour lesquelles cette histoire aurait pu sembler compliquée.',
+      '',
     storyChapter04b:
-      'Mais ce qui est fascinant avec l’amour, c’est qu’il ne suit pas toujours l’équation la plus évidente. Plus nous apprenions à nous connaître, plus nous découvrions que nous partagions l’essentiel : la famille, la foi, le respect, le sens de nos vies, l’ambition et le désir de nous voir grandir l’un avec l’autre.',
-    storyChapter04c: 'Lentement, l’équation commençait à prendre tout son sens.',
-    storyChapter05: `Puis est arrivé le moment où nous nous sommes enfin rencontrés en personne. Et, d’une certaine façon, cela ressemblait moins à un commencement qu’au fait de donner un visage, un sourire et une véritable étreinte à quelque chose qui avait déjà grandi entre nous. Ce moment a changé quelque chose. Il ne s’agissait plus seulement de nous demander ce que nous ressentions ; il s’agissait désormais de savoir ce que nous voulions en faire.`,
+      'Mais ce qu’il y a de beau avec l’amour, c’est qu’il ne suit pas toujours l’équation la plus évidente. Plus nous apprenions à nous connaître, plus nous découvrions que nous partagions l’essentiel : la famille, la foi, le respect, le sens des valeurs, l’ambition et ce désir sincère de nous voir grandir l’un à côté de l’autre.',
+    storyChapter04c: 'L’équation commençait enfin à prendre tout son sens.',
+    storyChapter05: `Puis est venu le jour où nous nous sommes enfin rencontrés. Et, d’une certaine façon, cela ressemblait moins à un commencement qu’au fait de donner un visage, un sourire et une véritable étreinte à ce qui avait déjà grandi entre nous. Ce moment a tout changé. Il ne s’agissait plus seulement de se demander ce que nous ressentions ; il s’agissait de savoir ce que nous voulions en faire.`,
     storyChapter06: `Et nous nous sommes choisis.
 Nous avons choisi de saisir cette magnifique et inattendue connexion pour en faire quelque chose de réel. Quelque chose d’intentionnel. Quelque chose qui mérite d’être bâti, protégé et cultivé ensemble. Notre histoire n’a peut-être pas suivi l’équation la plus simple. Il y avait des pays différents, des cultures différentes, la distance, le timing et tant d’inconnues. Mais à travers tout cela, une évidence n’a cessé de s’imposer : nous.`,
     storyEpilogue:
       'Et c’est peut-être là le plus beau de cette histoire : non pas que tout ait été facile ou parfaitement prévisible, mais que, pas à pas, nous ayons continué à retrouver notre chemin l’un vers l’autre. Nous continuons d’apprendre, de rire, de rêver et de nous choisir chaque jour.',
-    storyFinalVariable: `Nous voici donc aujourd’hui, avec une histoire qui a commencé de façon totalement inattendue et qui nous a conduits là où nous n’aurions jamais pu l’imaginer lorsque nos chemins se sont croisés en 2022.`,
-    storyClosing: `Et parce que chaque belle histoire mérite de garder quelques surprises, nous gardons pour vous quelques-uns des prochains chapitres. Vous devrez encore patienter un tout petit peu, car le prochain chapitre s’écrira le jour de notre mariage.
-Et cette fois, c’est ensemble que nous allons l’écrire. ❤️`,
+    storyFinalVariable: `Nous voici donc aujourd’hui, avec une histoire née de façon totalement inattendue et qui nous a menés là où nous n’aurions jamais pu l’imaginer.`,
+    storyClosing: `Et parce que chaque belle histoire mérite de garder quelques surprises, nous réservons les prochains chapitres pour vous. Vous devrez patienter encore un tout petit peu, car le prochain chapitre s’écrira le jour de notre mariage.
+Et cette fois, nous allons l’écrire ensemble. ❤️`,
     wedding: 'Le grand jour',
     weddingText: 'Nous vous attendons le samedi 9 janvier 2027 pour partager notre mariage religieux, puis célébrer ensemble lors de la réception.',
     weddingCountdownTitle: 'Le grand jour approche',
