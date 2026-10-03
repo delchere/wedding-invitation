@@ -219,7 +219,7 @@ Merci du fond du cœur pour votre générosité et votre bienveillance.`,
     storyIntro:
       'Sometimes, life has a funny way of introducing two people. You think you are simply starting a new chapter, and only later realise that you were actually meeting someone who would change the whole story.',
     storyChapter01:
-      'In 2022, our paths crossed at AIMS Cameroon, surrounded by research, science, ideas, and at least at the time, absolutely no obvious sign that we were sitting at the beginning of something much bigger. We met as colleagues and talked about work, research and projects. Very serious things. Or so we thought.',
+      'In 2022, our paths crossed at AIMS Cameroon, surrounded by research, science, ideas, and at least at the time, absolutely no obvious sign that we were sitting at the beginning of something much bigger. We met and started talking about work, research, and projects. Very serious things. Or so we thought.',
     storyChapter02:
       'After that chapter at AIMS, the conversations continued. Then they became longer. The calls became more frequent. And somehow, the conversations that once began with “How is the research going?” started wandering into everything else, life, family, dreams, faith, ambitions, and all the little things that make us who we are.',
     storyChapter03: `Somewhere along the way, something changed. Respect became trust, trust became friendship, and friendship quietly became something deeper. Then came the question neither of us could quite ignore: “Wait… is this becoming something more?”`,
