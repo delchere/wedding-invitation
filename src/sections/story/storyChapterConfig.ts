@@ -32,7 +32,7 @@ export const STORY_CHAPTERS: StoryChapterConfig[] = [
   },
   {
     id: 'ch04',
-    bodyKeys: ['storyChapter04a', 'storyChapter04b', 'storyChapter04c'],
+    bodyKeys: ['storyChapter04b', 'storyChapter04c'],
     progressStart: 0.46,
     progressEnd: 0.62,
   },
@@ -47,12 +47,6 @@ export const STORY_CHAPTERS: StoryChapterConfig[] = [
     bodyKeys: ['storyChapter06'],
     progressStart: 0.74,
     progressEnd: 0.84,
-  },
-  {
-    id: 'epilogue',
-    bodyKeys: ['storyEpilogue'],
-    progressStart: 0.84,
-    progressEnd: 0.9,
   },
   {
     id: 'final',
