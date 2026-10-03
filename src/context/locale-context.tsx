@@ -58,16 +58,12 @@ const translations: Record<Locale, Record<string, string>> = {
     storyChapter02:
       'Après cette étape à AIMS, nous avons continué à échanger. Puis, les conversations sont devenues plus longues. Les appels sont devenus plus fréquents. Et, d’une manière ou d’une autre, les conversations qui commençaient autrefois par « Comment avance la recherche ? » ont commencé à s’étendre à tout le reste : la vie, la famille, les rêves, la foi, les ambitions et toutes ces petites choses qui font de nous ce que nous sommes.',
     storyChapter03: `Quelque part en chemin, quelque chose a changé. Le respect est devenu confiance, la confiance est devenue amitié, et l’amitié s’est transformée en quelque chose de plus profond. Puis est venue cette question que ni l’un ni l’autre ne pouvait vraiment continuer à éviter : « Attends… est-ce que tout cela est en train de devenir quelque chose de plus ? »`,
-    storyChapter04a:
-      '',
     storyChapter04b:
       'Mais ce qu’il y a de beau avec l’amour, c’est qu’il ne suit pas toujours l’équation la plus évidente. Plus nous apprenions à nous connaître, plus nous découvrions que nous partagions l’essentiel : la famille, la foi, le respect, le sens des valeurs, l’ambition et ce désir sincère de nous voir grandir l’un à côté de l’autre.',
     storyChapter04c: 'L’équation commençait enfin à prendre tout son sens.',
     storyChapter05: `Puis est venu le jour où nous nous sommes enfin rencontrés. Et, d’une certaine façon, cela ressemblait moins à un commencement qu’au fait de donner un visage, un sourire et une véritable étreinte à ce qui avait déjà grandi entre nous. Ce moment a tout changé. Il ne s’agissait plus seulement de se demander ce que nous ressentions ; il s’agissait de savoir ce que nous voulions en faire.`,
     storyChapter06: `Et nous nous sommes choisis.
 Nous avons choisi de saisir cette magnifique et inattendue connexion pour en faire quelque chose de réel. Quelque chose d’intentionnel. Quelque chose qui mérite d’être bâti, protégé et cultivé ensemble. Notre histoire n’a peut-être pas suivi l’équation la plus simple. Il y avait des pays différents, des cultures différentes, la distance, le timing et tant d’inconnues. Mais à travers tout cela, une évidence n’a cessé de s’imposer : nous.`,
-    storyEpilogue:
-      'Et c’est peut-être là le plus beau de cette histoire : non pas que tout ait été facile ou parfaitement prévisible, mais que, pas à pas, nous ayons continué à retrouver notre chemin l’un vers l’autre. Nous continuons d’apprendre, de rire, de rêver et de nous choisir chaque jour.',
     storyFinalVariable: `Nous voici donc aujourd’hui, avec une histoire née de façon totalement inattendue et qui nous a menés là où nous n’aurions jamais pu l’imaginer.`,
     storyClosing: `Et parce que chaque belle histoire mérite de garder quelques surprises, nous réservons les prochains chapitres pour vous. Vous devrez patienter encore un tout petit peu, car le prochain chapitre s’écrira le jour de notre mariage.
 Et cette fois, nous allons l’écrire ensemble. ❤️`,
