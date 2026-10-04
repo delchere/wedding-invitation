@@ -263,10 +263,11 @@ a {
 
 .hero__names {
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(2.4rem, 9vw, 4rem);
+  font-size: clamp(2rem, 6.5vw, 3.2rem);
   font-weight: 600;
   margin: 0 0 16px;
   line-height: 1.1;
+  white-space: nowrap;
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.28);
 }
 
