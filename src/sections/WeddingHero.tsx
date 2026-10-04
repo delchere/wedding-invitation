@@ -25,9 +25,11 @@ const WeddingHero: FC = () => {
         <ScrollReveal>
           <p className="hero__title-script">{t('heroTitle')}</p>
           <h1 className="hero__names">
-            {bride.firstName}
-            <span className="hero__amp">&</span>
-            {groom.firstName}
+            <span className="hero__name-line">
+              {bride.firstName}
+              <span className="hero__amp">&</span>
+            </span>
+            <span className="hero__name-line">{groom.firstName}</span>
           </h1>
           <p className="hero__date">{t('heroDate')}</p>
           <p className="hero__location">{t('ceremonyLocation')}</p>
